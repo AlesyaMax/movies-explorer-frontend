@@ -68,10 +68,8 @@
   font-weight: 400;
 }
 
-.header__link_current-page {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+.header__link_active {
+  font-weight: 500;
 }
 
 .header__link_hidden {
@@ -182,6 +180,13 @@
     margin: 0 0 28px 0;
     font-size: 18px;
     font-weight: 500;
+  }
+
+  .header__link_active {
+    font-weight: 400;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
   }
 
   .header__link_main {
