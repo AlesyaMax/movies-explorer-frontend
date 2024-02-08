@@ -1,0 +1,207 @@
+.student {
+  max-width: 1280px;
+  margin: 110px 70px 125px 70px;
+}
+
+.student_info {
+  margin: 66px 0 101px 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.student_info__name {
+  margin: 0;
+  width: 54.5%;
+  max-width: 600px;
+  color: #fff;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  font-weight: 400;
+  letter-spacing: -2px;
+  line-height: 58px;
+}
+
+.student_info__subtitle {
+  margin: 18px 0 26px 0;
+  width: 54.5%;
+  max-width: 600px;
+  color: #fff;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.student_info__description {
+  width: 54.5%;
+  max-width: 600px;
+  line-height: 22px;
+}
+
+.student_info__photo {
+  width: 270px;
+  height: 327px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 10px;
+}
+
+.student_info__github-link {
+  margin-top: 99px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.94px;
+}
+
+.student__portfolio {
+  margin: 0 0 50px 0;
+  color: #8B8B8B;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.student_projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.student_projects__item {
+  width: 100%;
+  height: 70px;
+  color: #FFF;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -1.2px;
+  text-decoration: none;
+  border-bottom: 1px solid #424242;
+  display: flex;
+  justify-content: space-between;
+}
+
+.student_projects__link-icon {
+  width: 29px;
+  height: 60px;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .student {
+    margin: 90px 50px;
+  }
+
+  .student_info {
+    margin-bottom: 91px;
+  }
+
+  .student_info__name {
+    font-size: 22px;
+    letter-spacing: -0.88px;
+    line-height: 26.63px;
+  }
+
+  .student_info__subtitle {
+    margin-top: 16px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .student_info__description {
+    line-height: 18px;
+  }
+
+  .student_info__photo {
+    width: 255px;
+    height: 307px;
+  }
+
+  .student_info__github-link {
+    margin-top: 87px;
+  }
+
+  .student__portfolio {
+    color: #A0A0A0;
+  }
+
+  .student_projects__item {
+    font-size:  28px;
+    letter-spacing: -1.12px;
+    border-bottom: 1px solid #E6E6E6;
+  }
+
+  .student_projects__link-icon {
+    width: 27px;
+  }
+}
+
+@media (max-width: 650px) {
+  .student {
+    margin: 70px 14px;
+  }
+
+  .student_info {
+    margin-top: 60px;
+    margin-bottom: 70px;
+  }
+
+  .student_info__name {
+    margin-top: 392px;
+    width: 100%;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+    line-height: 36.31px;
+  }
+
+  .student_info__subtitle {
+    margin-top: 20px;
+    width: 100%;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .student_info__description {
+    width: 100%;
+    line-height: 16px;
+  }
+
+  .student_info__photo {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 292px;
+    height: 352px;
+  }
+
+  .student_info__github-link {
+    margin-top: 40px;
+  }
+
+  .student__portfolio {
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+
+  .student_projects__item {
+    height: 48px;
+    font-size:  18px;
+    letter-spacing: -0.72px;
+    line-height: 28px;
+    border-bottom: 1px solid #E6E6E6;
+  }
+
+  .student_projects__link-icon {
+    width: 18px;
+    height: 28px;
+  }
+}
