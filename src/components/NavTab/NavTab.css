@@ -1,9 +1,10 @@
 .navtab {
-  justify-self: end;
-  margin-bottom: 30px;
+  margin: 0 auto 30px auto;
   display: flex;
-  justify-content: space-between;
-  column-gap: 10px
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 
 .navtab__link {

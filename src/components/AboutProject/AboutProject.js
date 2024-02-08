@@ -5,7 +5,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 class AboutProject extends React.Component {
   render() {
     return (
-      <div className='about-project'>
+      <section className='about-project'>
         <SectionTitle additionalClass='about-project__title' sectionTitle="О проекте" />
         <article className='about-project_article'>
           <p className='article__title'>Дипломный проект включал 5 этапов</p>
@@ -15,7 +15,7 @@ class AboutProject extends React.Component {
           <p className='article__title'>На выполнение диплома ушло 5 недель</p>
           <Paragraph additionalClass="article__paragraph" text="У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься." />
         </article>
-        <section className='about-project_timeline'>
+        <div className='about-project_timeline'>
           <article className='about-project_timeline_back-end'>
             <p className='timeline__duration timeline__duration_back-end'>1 неделя</p>
             <p className='timeline__description'>Back-end</p>
@@ -24,9 +24,9 @@ class AboutProject extends React.Component {
             <p className='timeline__duration timeline__duration_front-end'>4 недели</p>
             <p className='timeline__description'>Front-end</p>
           </article>
-        </section>
+        </div>
 
-      </div>
+      </section>
     )
   }
 }
