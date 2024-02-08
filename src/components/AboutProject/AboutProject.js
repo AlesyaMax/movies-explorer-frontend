@@ -1,4 +1,5 @@
 import React from 'react';
+import Paragraph from '../Paragraph/Paragraph';
 import SectionTitle from '../SectionTitle/SectionTitle';
 
 class AboutProject extends React.Component {
@@ -8,11 +9,11 @@ class AboutProject extends React.Component {
         <SectionTitle additionalClass='about-project__title' sectionTitle="О проекте" />
         <article className='about-project_article'>
           <p className='article__title'>Дипломный проект включал 5 этапов</p>
-          <p className='article__paragraph'>Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
+          <Paragraph additionalClass="article__paragraph" text="Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки." />
         </article>
         <article className='about-project_article'>
           <p className='article__title'>На выполнение диплома ушло 5 недель</p>
-          <p className='article__paragraph'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
+          <Paragraph additionalClass="article__paragraph" text="У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься." />
         </article>
         <section className='about-project_timeline'>
           <article className='about-project_timeline_back-end'>

@@ -33,13 +33,7 @@
 }
 
 .article__paragraph {
-  margin: 0;
   max-width: 550px;
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  color: #fff;
 }
 
 .about-project_timeline {
@@ -101,11 +95,6 @@
     margin-bottom: 22px;
   }
 
-  .article__paragraph {
-    font-size: 12px;
-    line-height: 18px;
-  }
-
   .timeline__description {
     color: #A0A0A0;
   }
@@ -137,11 +126,6 @@
     font-size: 18px;
     letter-spacing: -0.72px;
     line-height: 21.78px;
-  }
-
-  .article__paragraph {
-    font-size: 11px;
-    line-height: 16px;
   }
 
   .about-project_timeline {
