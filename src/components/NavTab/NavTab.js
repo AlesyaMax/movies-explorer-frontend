@@ -1,16 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-class NavTab extends React.Component {
-  render() {
+function NavTab(props) {
     return (
       <nav className='navtab'>
-        <NavLink to="" className="navtab__link">О проекте</NavLink>
-        <NavLink to="" className="navtab__link">Технологии</NavLink>
-        <NavLink to="" className="navtab__link">Студент</NavLink>
+        {props.pointsSet.map((point) => (
+          <NavLink key={point.id} to={point.link} className={`navtab__link ${point.additionalClass}`}>{point.name}</NavLink>
+        ))}
       </nav>
     )
-  }
 }
 
 export default NavTab;
