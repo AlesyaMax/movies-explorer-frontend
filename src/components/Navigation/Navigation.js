@@ -4,7 +4,7 @@ function Navigation(props) {
   return (
     <>
       <nav className='navigation_authorized'>
-          <NavLink to="/" className="navigation_authorized__link navigation__link navigation__link_main" >Главная</NavLink>
+          <NavLink to="/" className="navigation_authorized__link navigation__link navigation__link_main navigation__link_hidden" >Главная</NavLink>
           <NavLink to="/movies" className="navigation_authorized__link navigation__link navigation__link_movies">Фильмы</NavLink>
           <NavLink to="/saved-movies" className="navigation_authorized__link navigation__link">Сохранённые фильмы</NavLink>
           <NavLink to="/profile" className="navigation_authorized__link navigation__link navigation__link_user">Аккаунт</NavLink>
