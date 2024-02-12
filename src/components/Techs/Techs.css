@@ -36,12 +36,11 @@
 .techs__navtab_item {
   margin: 0;
   width: 90px;
-  height: 38px;
-  padding-top: 22px;
+  height: 60px;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.56px;
-  line-height: 16.94px;
+  line-height: 60px;
 }
 
 @media (max-width: 1024px) {
@@ -69,11 +68,10 @@
 
   .techs__navtab_item {
     width: 84px;
-    height: 36px;
-    padding-top: 21px;
+    height: 57px;
     font-size: 12px;
     letter-spacing: -0.48px;
-    line-height: 14.52px;
+    line-height: 57px;
   }
 
 }

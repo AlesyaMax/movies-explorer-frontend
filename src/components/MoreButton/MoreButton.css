@@ -1,0 +1,25 @@
+.more-button_container {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.more-button_container__button {
+  margin: 50px auto 80px auto;
+  padding: 0;
+  width: 320px;
+  height: 36px;
+  background-color: transparent;
+  border: 1px solid #424242;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@media (max-width: 370px) {
+  .more-button_container__button {
+    margin-top: 50px;
+    width: 240px;
+  }
+}

@@ -1,6 +1,6 @@
 .movies {
   margin: 0 auto;
-  padding: 0 70px
+  padding: 0 70px;
 }
 
 @media (max-width: 1024px) {
