@@ -1,0 +1,61 @@
+.page-not-found {
+  margin: 0 auto;
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-not-found__code {
+  margin-top: 246px;
+  margin-bottom: 5px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 140px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.page-not-found__message {
+  margin: 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.page-not-found__redirection {
+  margin-top: 184px;
+  margin-bottom: 60px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #4285F4;
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  .page-not-found__code {
+    margin-top: 408px;
+  }
+
+.page-not-found__redirection {
+  margin-bottom: 222px;
+}
+}
+
+@media (max-width: 650px) {
+  .page-not-found__code {
+    margin-top: 329px;
+    margin-bottom: 10px;
+    font-size: 80px;
+  }
+
+  .page-not-found__message {
+    font-size: 12px;
+  }
+
+.page-not-found__redirection {
+  margin-bottom: 30px;
+  font-size: 12px;
+}
+}
