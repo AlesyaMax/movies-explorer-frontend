@@ -6,7 +6,7 @@ import NavTab from "../NavTab/NavTab";
 class Techs extends React.Component {
   render() {
     return (
-      <section className='techs'>
+      <section className='techs' id="techs">
         <SectionTitle additionalClass="techs__title" sectionTitle="Технологии"/>
         <p className='techs__article_title'>7 технологий</p>
         <Paragraph additionalClass="techs__paragraph" text="На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте."/>

@@ -31,12 +31,12 @@
   font-weight: 400;
 }
 
-.navigation__link_active {
-  font-weight: 500;
-}
-
 .navigation__link_hidden {
   display: none
+}
+
+[aria-current="page"] {
+  font-weight: 500;
 }
 
 /* Уникальные свойства отдельных навигационных ссылок */
@@ -115,7 +115,7 @@
     font-weight: 500;
   }
 
-  .navigation__link_active {
+  [aria-current="page"] {
     font-weight: 400;
     text-decoration: underline;
     text-decoration-thickness: 2px;

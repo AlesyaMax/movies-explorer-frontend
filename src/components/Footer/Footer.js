@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 class Footer extends React.Component {
   render() {
@@ -8,8 +7,8 @@ class Footer extends React.Component {
           <p className='footer__info'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
           <p className='footer__copyright'>© 2024</p>
           <nav className='footer_links'>
-            <NavLink to='/' className='footer_links__item'>Яндекс.Практикум</NavLink>
-            <NavLink to='/' className='footer_links__item'>Github</NavLink>
+            <a href='https://practicum.yandex.ru/' target="blank" className='footer_links__item'>Яндекс.Практикум</a>
+            <a href='https://github.com/' target="blank" className='footer_links__item'>Github</a>
           </nav>
       </div>
     )

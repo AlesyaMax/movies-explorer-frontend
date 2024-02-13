@@ -2,7 +2,7 @@ function NavTab(props) {
     return (
       <nav className={`navtab ${props.additionalClass}`}>
         {props.pointsSet.map((point) => (
-          <p key={point.id} className={`navtab__link ${point.additionalClass}`}>{point.name}</p>
+          <a key={point.id} className={`navtab__link ${point.additionalClass}`} href={point.link}>{point.name}</a>
         ))}
       </nav>
     )

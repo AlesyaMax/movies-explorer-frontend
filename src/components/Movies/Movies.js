@@ -13,7 +13,7 @@ function Movies(props) {
       <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn}/>
       <main className='movies'>
         <SearchForm/>
-        <FilterCheckbox/>
+        <FilterCheckbox checkboxIcon={props.checkboxIcon} onFilterClick={props.onFilterClick}/>
         <MoviesCardList cardsSet={cardsSet} isOnlySavedMovies={false}/>
         <MoreButton/>
       </main>

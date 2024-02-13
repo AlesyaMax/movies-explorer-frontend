@@ -9,15 +9,15 @@ class Promo extends React.Component {
         <NavTab pointsSet={
           [{"id": "promoAboutProject",
           "name": "О проекте",
-          "link": "/"
+          "link": "#about-project"
           },
           {"id": "promoTechno",
           "name": "Технологии",
-          "link": "/"
+          "link": "#techs"
           },
           {"id": "promoStudent",
           "name": "Студент",
-          "link": "/"
+          "link": "#about-me"
           },
           ]}
         />

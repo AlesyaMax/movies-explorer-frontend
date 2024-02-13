@@ -1,11 +1,13 @@
-import { NavLink } from 'react-router-dom';
-
 function PageNotFound(props) {
+  function handleBackRedirection() {
+    window.history.back();
+  }
+
   return(
     <main className='page-not-found'>
       <h1 className='page-not-found__code'>404</h1>
       <p className='page-not-found__message'>Страница не найдена</p>
-      <NavLink to="/" className='page-not-found__redirection'>Назад</NavLink>
+      <button className='page-not-found__redirection' onClick={handleBackRedirection}>Назад</button>
     </main>
   )
 }

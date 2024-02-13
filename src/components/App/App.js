@@ -7,12 +7,20 @@ import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Profile from '../Profile/Profile';
 import React, { useState, useEffect } from 'react';
+import checkboxOn from "../../images/smalltumb.svg";
+import checkboxOff from "../../images/smalltumboff.svg";
 
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true); //На следующем этапе прописать запрос на создание / проверку / удаление токена для обновления переменной
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isMovieSaved, setIsMovieSaved] = useState(false); //На следующем этапе прописать запрос на проверку статуса фильма и его добавление / удаление из сохраненных
+  const [checkboxIcon, setCheckboxIcon] = useState(checkboxOff);
+  const [hasErrors, setHasErrors] = useState(false); //На следующем этапе прописать валидацию данных
+
+  function handleLogoClick() {
+    
+  }
 
   function handleOpenMenu() {
     setIsMenuOpened(true);
@@ -30,6 +38,14 @@ function App() {
     }
   }
 
+  function handleFilterClick() {
+    if(checkboxIcon === checkboxOn) {
+      setCheckboxIcon(checkboxOff);
+    } else {
+      setCheckboxIcon(checkboxOn);
+    }
+  }
+
   useEffect(() => {
     setIsMenuOpened(false);
   }, []);
@@ -37,8 +53,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Main isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn}/>} />
-      <Route path="/movies" element={<Movies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn}/>}></Route>
-      <Route path="/saved-movies" element={<SavedMovies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn}/>}></Route>
+      <Route path="/movies" element={<Movies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} checkboxIcon={checkboxIcon} onFilterClick={handleFilterClick}/>}></Route>
+      <Route path="/saved-movies" element={<SavedMovies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} checkboxIcon={checkboxIcon} onFilterClick={handleFilterClick}/>}></Route>
       <Route path="/profile" element={<Profile isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn}/>}></Route>
       <Route path="/signup" element={<Register/>}></Route>
       <Route path="/signin" element={<Login/>}></Route>

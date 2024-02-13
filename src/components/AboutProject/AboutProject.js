@@ -5,7 +5,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 class AboutProject extends React.Component {
   render() {
     return (
-      <section className='about-project'>
+      <section className='about-project' id="about-project">
         <SectionTitle additionalClass='about-project__title' sectionTitle="О проекте" />
         <article className='about-project_article'>
           <p className='article__title'>Дипломный проект включал 5 этапов</p>
