@@ -9,15 +9,12 @@ function Login(props) {
     <>
       <Form 
         withLogo={true} 
-        title="Рады видеть!" 
-        isSubmitButton={true}
-        buttonText="Войти" 
-        additionalButtonClass="button_login">
+        title="Рады видеть!">
         <InputElement label="E-mail" id="email" type="email" placeholder="Введите e-mail"/>
         <InputElement label="Пароль" id="password" type="password" placeholder="Введите пароль" hasSecretValue={true}/>
         <ErrorMessage errorMessage="Вы ввели неправильный логин или пароль."/>
-        <FormButton isSubmitButton={true} buttonText="Войти"/>
-        <FormLink address="/login" linkText="Ещё не зарегистрированы?" linkButton="Регистрация"/>
+        <FormButton isSubmitButton={true} buttonText="Войти" additionalButtonClass="button_login"/>
+        <FormLink address="/signup" linkText="Ещё не зарегистрированы?" linkButton="Регистрация"/>
       </Form>
     </>
   )

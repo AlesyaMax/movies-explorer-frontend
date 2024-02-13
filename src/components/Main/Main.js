@@ -8,7 +8,7 @@ import AboutMe from '../AboutMe/AboutMe';
 function Main(props) {
   return (
     <>
-    <Header/>
+    <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn}/>
     <main className='main'>
       <Promo/>
       <AboutProject/>

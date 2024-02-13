@@ -14,7 +14,7 @@ function Register(props) {
         <InputElement label="Пароль" id="password" type="password" placeholder="Введите пароль" hasSecretValue={true}/>
         <ErrorMessage errorMessage="При регистрации пользователя произошла ошибка."/>
         <FormButton isSubmitButton={true} buttonText="Зарегистрироваться"/>
-        <FormLink address="/login" linkText="Уже зарегистрированы?" linkButton="Войти"/>
+        <FormLink address="/signin" linkText="Уже зарегистрированы?" linkButton="Войти"/>
       </Form>
     </>
   )

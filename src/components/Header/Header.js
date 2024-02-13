@@ -6,9 +6,9 @@ function Header(props) {
   return (
     <div className='header'>
       <img className='header__logo' alt="логотип" src={headerLogo}/>
-      <div className='header__overlay'></div>
-      <Navigation></Navigation>
-      <button className=" header__hamburger-menu header__hamburger-menu_closed header__hamburger-menu_visible"></button>
+      <div className={`header__overlay ${props.isMenuOpened && 'header__overlay_visible'}`}></div>
+      <Navigation isLoggedIn={props.isLoggedIn} isMenuOpened={props.isMenuOpened}></Navigation>
+      {props.isLoggedIn && (<button className={`header__hamburger-menu header__hamburger-menu_visible ${props.isMenuOpened ? 'header__hamburger-menu_opened' : 'header__hamburger-menu_closed'}`} onClick={props.onMenuClick}></button>)}
     </div>
   );
 }

@@ -7,7 +7,7 @@ import {cardsSet} from '../../utils/constants';
 function SavedMovies(props) {
   return(
     <>
-      <Header/>
+      <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn}/>
       <SearchForm/>
       <MoviesCardList cardsSet={cardsSet}/>
       <div className='section-divider'></div>

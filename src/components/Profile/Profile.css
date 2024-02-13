@@ -61,18 +61,17 @@
   font-size: 13px;
   font-weight: 400;
   color: #FFFFFF;
-  display: none;
 }
 
 .profile__button_save {
   margin-top: 0;
+  display: none;
 }
 
 .profile__link {
   font-size: 13px;
   font-weight: 500;
   color: #EE3465;
-  display: none;
   }
 
 @media (max-width: 1024px) {
