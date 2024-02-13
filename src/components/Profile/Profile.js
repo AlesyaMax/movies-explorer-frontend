@@ -30,7 +30,8 @@ function Profile(props) {
         type="email"  
         placeholder="pochta@yandex.ru" 
         inputValue={props.email}/>
-        <ErrorMessage hasErrors={false} errorMessage=" При обновлении профиля произошла ошибка."/>
+        <ErrorMessage hasErrors={true} errorMessage=" При обновлении профиля произошла ошибка." additionalErrorClass="profile__error-message"/>
+        <FormButton isSubmitButton={true} buttonText="Сохранить" additionalButtonClass="profile__button_save"/>
         <FormButton additionalButtonClass="profile__button_edit" buttonText="Редактировать"/>
         <FormLink address="/login" linkText="Выйти из аккаунта" additionalLinkClass="profile__link"/>
       </Form>

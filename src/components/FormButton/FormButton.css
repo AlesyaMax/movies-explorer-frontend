@@ -11,6 +11,11 @@
   font-weight: 500;
 }
 
+.button_submit_disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+}
+
 @media (max-width: 650px) {
   .button_submit {
     font-size: 12px;
