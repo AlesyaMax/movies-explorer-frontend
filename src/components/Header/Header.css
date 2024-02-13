@@ -27,6 +27,7 @@
 
 .header__overlay_visible {
   display: flex;
+  z-index: 2;
 }
 
 .header__hamburger-menu {
@@ -38,7 +39,7 @@
   background-position: center;
   background-color: transparent;
   border: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .header__hamburger-menu_closed {

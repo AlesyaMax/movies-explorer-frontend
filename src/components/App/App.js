@@ -6,12 +6,13 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Profile from '../Profile/Profile';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); //На следующем этапе прописать запрос на создание / проверку / удаление токена для обновления переменной
   const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const [isMovieSaved, setIsMovieSaved] = useState(false); //На следующем этапе прописать запрос на проверку статуса фильма и его добавление / удаление из сохраненных
 
   function handleOpenMenu() {
     setIsMenuOpened(true);
@@ -29,6 +30,9 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    setIsMenuOpened(false);
+  }, []);
 
   return (
     <Routes>

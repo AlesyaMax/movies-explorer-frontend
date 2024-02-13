@@ -102,6 +102,7 @@
 
   .navigation_authorized_visible {
     display: flex;
+    z-index: 3;
   }
 
   .navigation_unauthorized {

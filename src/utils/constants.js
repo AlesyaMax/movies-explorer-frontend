@@ -21,7 +21,8 @@ export const cardsSet = [
   "thumbnail": "",
   "movieId": "2",
   "nameRU": "33 слова о дизайне",
-  "nameEN": ""
+  "nameEN": "",
+  "owner": '123'  
   },
   {"country": "",
   "director": "",
@@ -33,7 +34,8 @@ export const cardsSet = [
   "thumbnail": "",
   "movieId": "3",
   "nameRU": "33 слова о дизайне",
-  "nameEN": ""
+  "nameEN": "",
+  "owner": '123' 
   },
   {"country": "",
   "director": "",

@@ -28,7 +28,6 @@
   line-height: 21px;
   text-align: center;
   color: #FFFFFF;
-  display: none;
 }
 
 .button_remove-movie {
@@ -39,11 +38,6 @@
   object-fit: contain;
   border: none;
   background-color: transparent;
-  display: none;
-}
-
-.button_visible {
-  display: inline;
 }
 
 .movie__image {

@@ -9,7 +9,7 @@ function SavedMovies(props) {
     <>
       <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn}/>
       <SearchForm/>
-      <MoviesCardList cardsSet={cardsSet}/>
+      <MoviesCardList cardsSet={cardsSet} isOnlySavedMovies={true}/>
       <div className='section-divider'></div>
       <Footer/>
     </>

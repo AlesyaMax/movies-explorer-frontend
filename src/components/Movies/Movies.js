@@ -14,7 +14,7 @@ function Movies(props) {
       <main className='movies'>
         <SearchForm/>
         <FilterCheckbox/>
-        <MoviesCardList cardsSet={cardsSet}/>
+        <MoviesCardList cardsSet={cardsSet} isOnlySavedMovies={false}/>
         <MoreButton/>
       </main>
       <Footer/>
