@@ -8,7 +8,7 @@ import FormButton from '../FormButton/FormButton';
 function Profile(props) {
   return (
     <>
-    <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn}/>
+    <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn} onLogoClick={props.onLogoClick}/>
       <Form withLogo={false} 
       title="Привет, Виталий!"
       additionalTitleClass="profile__title">

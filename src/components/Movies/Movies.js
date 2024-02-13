@@ -10,7 +10,7 @@ import Footer from '../Footer/Footer';
 function Movies(props) {
   return (
     <>
-      <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn}/>
+      <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn} onLogoClick={props.onLogoClick}/>
       <main className='movies'>
         <SearchForm/>
         <FilterCheckbox checkboxIcon={props.checkboxIcon} onFilterClick={props.onFilterClick}/>

@@ -1,4 +1,4 @@
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes, useNavigate} from "react-router-dom";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -18,8 +18,10 @@ function App() {
   const [checkboxIcon, setCheckboxIcon] = useState(checkboxOff);
   const [hasErrors, setHasErrors] = useState(false); //На следующем этапе прописать валидацию данных
 
+  const navigate = useNavigate();
+
   function handleLogoClick() {
-    
+    navigate("/", { replace: true })
   }
 
   function handleOpenMenu() {
@@ -53,9 +55,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Main isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn}/>} />
-      <Route path="/movies" element={<Movies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} checkboxIcon={checkboxIcon} onFilterClick={handleFilterClick}/>}></Route>
-      <Route path="/saved-movies" element={<SavedMovies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} checkboxIcon={checkboxIcon} onFilterClick={handleFilterClick}/>}></Route>
-      <Route path="/profile" element={<Profile isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn}/>}></Route>
+      <Route path="/movies" element={<Movies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} checkboxIcon={checkboxIcon} onFilterClick={handleFilterClick} onLogoClick={handleLogoClick}/>}></Route>
+      <Route path="/saved-movies" element={<SavedMovies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} checkboxIcon={checkboxIcon} onFilterClick={handleFilterClick} onLogoClick={handleLogoClick}/>}></Route>
+      <Route path="/profile" element={<Profile isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} onLogoClick={handleLogoClick}/>}></Route>
       <Route path="/signup" element={<Register/>}></Route>
       <Route path="/signin" element={<Login/>}></Route>
       <Route path="*" element={<PageNotFound/>}></Route>
