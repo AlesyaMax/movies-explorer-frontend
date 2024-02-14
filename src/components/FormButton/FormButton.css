@@ -1,4 +1,4 @@
-.button_submit {
+.button {
   margin: 59px 0 0 0;
   padding: 0;
   width: 100%;
@@ -11,23 +11,23 @@
   font-weight: 500;
 }
 
-.button_submit:hover {
+.button:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
-.button_submit_disabled {
+.button_disabled {
   background-color: #F8F8F8;
   color: #C2C2C2;
 }
 
-.button_submit_disabled:hover {
+.button_disabled:hover {
   opacity: 1;
   cursor: default;
 }
 
 @media (max-width: 650px) {
-  .button_submit {
+  .button {
     font-size: 12px;
     font-weight: 400;
     margin-top: 147px;

@@ -21,6 +21,7 @@ function App() {
   const [hasErrors, setHasErrors] = useState(false); //На следующем этапе прописать валидацию данных
   const [isLoading, setIsLoading] = useState(false); //На следующем этапе прописать загрузку при выполнении запросов
   const [isMovieFound, setIsMovieFound] = useState(true); //На следующем этапе прописать результат поиска при выполнении запросов
+  const [isInEditingMode, setIsInEditingMode] = useState(false);
 
   const navigate = useNavigate();
 
@@ -52,6 +53,24 @@ function App() {
     }
   }
 
+  function switchEditingMode() {
+    if(isInEditingMode) {
+      setIsInEditingMode(false);
+    } else {
+      setIsInEditingMode(true)
+    }
+  }
+
+  function handleProfileSubmit(data) {
+    switchEditingMode()
+  } //В следующем этапе настроить обновление пользователя на сервере
+
+  function handleRegisterSubmit(data) {
+  } //В следующем этапе настроить запись пользователя на сервере
+
+  function handleLoginSubmit(data) {
+  } //В следующем этапе настроить проверку пользователя на сервере
+  
   useEffect(() => {
     setIsMenuOpened(false);
   }, [currentPath]);
@@ -103,10 +122,13 @@ function App() {
           onMenuClick={handleClickOnMenu} 
           isLoggedIn={isLoggedIn} 
           onLogoClick={handleLogoClick}
+          isInEditingMode={isInEditingMode}
+          onEditProfile={switchEditingMode}
+          onSubmit={handleProfileSubmit}
         />}
       />
-      <Route path="/signup" element={<Register/>}></Route>
-      <Route path="/signin" element={<Login/>}></Route>
+      <Route path="/signup" element={<Register onSubmit={handleRegisterSubmit}/>}></Route>
+      <Route path="/signin" element={<Login onSubmit={handleLoginSubmit}/>}></Route>
       <Route path="*" element={<PageNotFound/>}></Route>
     </Routes>)
 }

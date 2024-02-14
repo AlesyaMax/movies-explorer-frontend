@@ -1,6 +1,6 @@
 function Paragraph(props) {
   return (
-    <p className={`paragraph ${props.additionalClass}`}>{props.text}</p>
+    <p className={`paragraph ${props.additionalClass}`} onClick={props.onClickFunction}>{props.text}</p>
   )
 }
 

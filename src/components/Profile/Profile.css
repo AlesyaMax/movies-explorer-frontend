@@ -36,7 +36,7 @@
   height: 14px;
   background-color: transparent;
   text-align: right;
-  padding: 0;
+  padding: 0 1px 0 0;
   font-size: 11px;
 }
 
@@ -50,7 +50,7 @@
   margin-bottom: 20px;
 }
 
-.profile__button_edit {
+.profile__edit {
   margin: 0 auto 0 auto;
   padding: 0;
   width: 100%;
@@ -61,16 +61,16 @@
   font-size: 13px;
   font-weight: 400;
   color: #FFFFFF;
+  text-align: center;
 }
 
-.profile__button_edit:hover {
-  opacity: 0.8;
+.profile__edit:hover {
+  opacity: 0.7;
   cursor: pointer;
 }
 
 .profile__button_save {
   margin-top: 0;
-  display: none;
 }
 
 .profile__link {
@@ -101,7 +101,7 @@
     margin-bottom: 363px;
   }
 
-  .profile__button_edit {
+  .profile__edit {
     font-size: 12px;
     height: 15px;
   }

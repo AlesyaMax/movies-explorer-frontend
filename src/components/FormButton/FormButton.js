@@ -1,6 +1,6 @@
 function FormButton(props) {
   return (
-    <button className={`${props.isSubmitButton && 'button_submit'} ${props.isDisabled && 'button_submit_disabled'} ${props.additionalButtonClass}`}>{props.buttonText}</button>
+    <button className={`button ${props.isDisabled && 'button_disabled'} ${props.additionalButtonClass}`}>{props.buttonText}</button>
   )
 }
 
