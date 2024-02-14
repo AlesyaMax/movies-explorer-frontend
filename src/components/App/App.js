@@ -12,6 +12,7 @@ import checkboxOff from "../../images/smalltumboff.svg";
 
 function App() {
 
+  const currentPath = window.location.pathname;
   const [isLoggedIn, setIsLoggedIn] = useState(true); //На следующем этапе прописать запрос на создание / проверку / удаление токена для обновления переменной
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isMovieSaved, setIsMovieSaved] = useState(false); //На следующем этапе прописать запрос на проверку статуса фильма и его добавление / удаление из сохраненных
@@ -52,7 +53,7 @@ function App() {
 
   useEffect(() => {
     setIsMenuOpened(false);
-  }, []);
+  }, [currentPath]);
 
   return (
     <Routes>
