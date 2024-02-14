@@ -2,7 +2,6 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import {cardsSet} from "../../utils/constants";
 import MoreButton from '../MoreButton/MoreButton';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
@@ -19,10 +18,11 @@ function Movies(props) {
        {props.isLoading 
         ? (<Preloader/>)
         : (props.isMovieFound 
-          ? (<MoviesCardList cardsSet={cardsSet} isOnlySavedMovies={false}/>) 
+          ? (<MoviesCardList cardsSet={props.cardsSet} isOnlySavedMovies={props.isOnlySavedMovies}/>) 
           : (<NoMoviesFound />)
           )
         }
+        {props.children}
       </main>
       <Footer/>
     </>

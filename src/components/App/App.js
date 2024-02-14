@@ -9,6 +9,7 @@ import Profile from '../Profile/Profile';
 import React, { useState, useEffect } from 'react';
 import checkboxOn from "../../images/smalltumb.svg";
 import checkboxOff from "../../images/smalltumboff.svg";
+import {cardsSet} from "../../utils/constants";
 
 function App() {
 
@@ -76,6 +77,8 @@ function App() {
           onLogoClick={handleLogoClick}
           isLoading={isLoading}
           isMovieFound={isMovieFound}
+          cardsSet={cardsSet}
+          isOnlySavedMovies={false}
         />}
       />
       <Route 
@@ -89,6 +92,8 @@ function App() {
           onLogoClick={handleLogoClick}
           isLoading={isLoading}
           isMovieFound={isMovieFound}
+          cardsSet={cardsSet}
+          isOnlySavedMovies={true}
         />}
       />
       <Route 
