@@ -1,3 +1,4 @@
+import MoreButton from '../MoreButton/MoreButton';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
@@ -13,7 +14,7 @@ function MoviesCardList(props) {
     : (<section className='movies-container'> {props.cardsSet.map((card) => (<MoviesCard key={card.movieId} movieData={card}/>
     ))} </section>)
     }
-    
+    <MoreButton/>
 </> )
 }
 

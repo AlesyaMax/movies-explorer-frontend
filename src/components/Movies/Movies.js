@@ -5,6 +5,8 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import {cardsSet} from "../../utils/constants";
 import MoreButton from '../MoreButton/MoreButton';
 import Footer from '../Footer/Footer';
+import Preloader from '../Preloader/Preloader';
+import NoMoviesFound from '../NoMoviesFound/NoMoviesFound';
 
 
 function Movies(props) {
@@ -14,8 +16,13 @@ function Movies(props) {
       <main className='movies'>
         <SearchForm/>
         <FilterCheckbox checkboxIcon={props.checkboxIcon} onFilterClick={props.onFilterClick}/>
-        <MoviesCardList cardsSet={cardsSet} isOnlySavedMovies={false}/>
-        <MoreButton/>
+       {props.isLoading 
+        ? (<Preloader/>)
+        : (props.isMovieFound 
+          ? (<MoviesCardList cardsSet={cardsSet} isOnlySavedMovies={false}/>) 
+          : (<NoMoviesFound />)
+          )
+        }
       </main>
       <Footer/>
     </>

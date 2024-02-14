@@ -17,6 +17,8 @@ function App() {
   const [isMovieSaved, setIsMovieSaved] = useState(false); //На следующем этапе прописать запрос на проверку статуса фильма и его добавление / удаление из сохраненных
   const [checkboxIcon, setCheckboxIcon] = useState(checkboxOff);
   const [hasErrors, setHasErrors] = useState(false); //На следующем этапе прописать валидацию данных
+  const [isLoading, setIsLoading] = useState(false); //На следующем этапе прописать загрузку при выполнении запросов
+  const [isMovieFound, setIsMovieFound] = useState(true); //На следующем этапе прописать результат поиска при выполнении запросов
 
   const navigate = useNavigate();
 
@@ -54,10 +56,49 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Main isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn}/>} />
-      <Route path="/movies" element={<Movies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} checkboxIcon={checkboxIcon} onFilterClick={handleFilterClick} onLogoClick={handleLogoClick}/>}></Route>
-      <Route path="/saved-movies" element={<SavedMovies isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} checkboxIcon={checkboxIcon} onFilterClick={handleFilterClick} onLogoClick={handleLogoClick}/>}></Route>
-      <Route path="/profile" element={<Profile isMenuOpened={isMenuOpened} onMenuClick={handleClickOnMenu} isLoggedIn={isLoggedIn} onLogoClick={handleLogoClick}/>}></Route>
+      <Route 
+        path="/" 
+        element={<Main 
+          isMenuOpened={isMenuOpened} 
+          onMenuClick={handleClickOnMenu} 
+          isLoggedIn={isLoggedIn}
+        />}
+      />
+      <Route 
+        path="/movies" 
+        element={<Movies 
+          isMenuOpened={isMenuOpened} 
+          onMenuClick={handleClickOnMenu} 
+          isLoggedIn={isLoggedIn} 
+          checkboxIcon={checkboxIcon} 
+          onFilterClick={handleFilterClick} 
+          onLogoClick={handleLogoClick}
+          isLoading={isLoading}
+          isMovieFound={isMovieFound}
+        />}
+      />
+      <Route 
+        path="/saved-movies" 
+        element={<SavedMovies 
+          isMenuOpened={isMenuOpened} 
+          onMenuClick={handleClickOnMenu} 
+          isLoggedIn={isLoggedIn} 
+          checkboxIcon={checkboxIcon} 
+          onFilterClick={handleFilterClick} 
+          onLogoClick={handleLogoClick}
+          isLoading={isLoading}
+          isMovieFound={isMovieFound}
+        />}
+      />
+      <Route 
+        path="/profile" 
+        element={<Profile 
+          isMenuOpened={isMenuOpened} 
+          onMenuClick={handleClickOnMenu} 
+          isLoggedIn={isLoggedIn} 
+          onLogoClick={handleLogoClick}
+        />}
+      />
       <Route path="/signup" element={<Register/>}></Route>
       <Route path="/signin" element={<Login/>}></Route>
       <Route path="*" element={<PageNotFound/>}></Route>
