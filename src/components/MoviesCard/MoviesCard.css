@@ -16,6 +16,10 @@
   right: 14px;
 }
 
+.movie__button:hover {
+  cursor: pointer;
+}
+
 .button_save-movie {
   width: 72px;
   height: 21px;

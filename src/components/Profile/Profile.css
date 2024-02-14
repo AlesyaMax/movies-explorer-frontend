@@ -63,6 +63,11 @@
   color: #FFFFFF;
 }
 
+.profile__button_edit:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 .profile__button_save {
   margin-top: 0;
   display: none;

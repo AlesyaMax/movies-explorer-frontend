@@ -43,6 +43,10 @@
   line-height: 60px;
 }
 
+.techs__navtab_item:hover {
+  opacity: 1;
+}
+
 @media (max-width: 1024px) {
   .techs {
     padding-left: 50px;

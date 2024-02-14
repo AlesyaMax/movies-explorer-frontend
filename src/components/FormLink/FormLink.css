@@ -7,6 +7,11 @@
   color: #8B8B8B;
 }
 
+.form__link:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
 .form__link_span {
   margin-left: 6px;
   color: #4285F4;

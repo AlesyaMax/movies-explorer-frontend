@@ -12,6 +12,10 @@
   margin: 0 0 40px 0;
 }
 
+.filter__image:hover {
+  cursor: pointer;
+}
+
 .filter__name {
   margin: 0 0 40px 12px;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -19,6 +23,10 @@
   font-weight: 400;
   line-height: 18px;
   color: #FFFFFF;
+}
+
+.filter__name:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 650px) {

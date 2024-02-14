@@ -45,6 +45,10 @@
   color: #FFF;
 }
 
+.footer_links__item:hover {
+  opacity: 0.7;
+}
+
 @media (max-width: 1024px) {
   .footer {
     padding: 0 30px;

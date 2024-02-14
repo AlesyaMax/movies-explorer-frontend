@@ -35,6 +35,11 @@
   background-color: transparent;
 }
 
+.page-not-found__redirection:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
 @media (max-width: 1024px) {
   .page-not-found__code {
     margin-top: 408px;

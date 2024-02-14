@@ -21,6 +21,10 @@
   border-radius: 10px;
 }
 
+.navtab__link:hover {
+  opacity: 0.8;
+}
+
 @media (max-width: 767px) {
   .navtab {
     margin-bottom: 17px;

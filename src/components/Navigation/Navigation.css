@@ -19,6 +19,10 @@
 
 /* Общие свойства навигационных ссылок */
 
+.navigation__link:hover {
+  opacity: 0.7;
+}
+
 .navigation_hidden {
   display: none;
 }
