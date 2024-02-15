@@ -2,7 +2,6 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import MoreButton from '../MoreButton/MoreButton';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 import NoMoviesFound from '../NoMoviesFound/NoMoviesFound';
