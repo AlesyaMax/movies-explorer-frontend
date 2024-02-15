@@ -6,7 +6,7 @@
 }
 
 .more-button_container__button {
-  margin: 50px auto 80px auto;
+  margin: 78px auto 80px auto;
   padding: 0;
   width: 320px;
   height: 36px;
@@ -23,9 +23,16 @@
   cursor: pointer;
 }
 
+@media (max-width: 810px) {
+  .more-button_container__button {
+    margin-top: 60px;
+    margin-bottom: 100px;
+  }
+}
+
 @media (max-width: 370px) {
   .more-button_container__button {
-    margin-top: 50px;
+    margin-top: 63px;
     width: 240px;
   }
 }

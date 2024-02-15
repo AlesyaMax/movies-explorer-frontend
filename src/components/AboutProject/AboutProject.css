@@ -13,12 +13,17 @@
 
 .about-project_article {
   margin-top: 70px;
-  margin-bottom: 93px;
+  margin-bottom: 110px;
   min-width: 284px;
+  max-width: 550px;
 }
 
 .about-project_article:first-of-type {
-  margin-right: 40px;
+  margin-right: 20px;
+}
+
+.about-project_article:nth-of-type(2) {
+  margin-left: 20px;
 }
 
 .article__title {
@@ -86,8 +91,16 @@
     margin: 90px 50px 90px 50px;
   }
 
+  .about-project_article {
+    margin-bottom: 93px;
+  }
+
   .about-project_article:first-of-type {
-    margin-right: 30px;
+    margin-right: 15px;
+  }
+
+  .about-project_article:nth-of-type(2) {
+    margin-left: 15px;
   }
 
   .article__title {
@@ -111,12 +124,17 @@
   }
 
   .about-project_article {
-    margin-top: 60px;
+    margin-top: 56px;
     margin-bottom: 0;
   }
 
   .about-project_article:first-of-type {
     margin-right: 0;
+    margin-top: 60px;
+  }
+
+  .about-project_article:nth-of-type(2) {
+    margin-left: 0;
   }
 
   .article__title {
@@ -130,6 +148,7 @@
   .about-project_timeline {
     grid-column: 1/2;
     margin-top: 60px;
+    grid-template-columns: 0.35fr 0.65fr;
   }
 
   .timeline__duration {

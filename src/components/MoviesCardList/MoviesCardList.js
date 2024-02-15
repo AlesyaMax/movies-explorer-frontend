@@ -14,7 +14,7 @@ function MoviesCardList(props) {
     : (<section className='movies-container'> {props.cardsSet.map((card) => (<MoviesCard key={card.movieId} movieData={card}/>
     ))} </section>)
     }
-    <MoreButton/>
+    {/* <MoreButton/> */}
 </> )
 }
 

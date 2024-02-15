@@ -1,5 +1,11 @@
 .section-divider {
-  margin: 0 auto;
+  margin: 102px auto 0 auto;
   width: 100%;
   height: 140px;
+}
+
+@media (max-width: 370px) {
+  .section-divider {
+    margin-top: 10px;
+  }
 }

@@ -77,9 +77,16 @@
   }
 
   .header__hamburger-menu {
-    margin-right: 14px;
-    width: 40px;
-    height: 43px;
-    object-fit:fill;
+    margin-right: 23px;
+    width: 22px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .header__hamburger-menu_opened {
+    background-position: top;
+    background-repeat: no-repeat;
+    margin-right: 18px;
+    height: 47px;
   }
 }

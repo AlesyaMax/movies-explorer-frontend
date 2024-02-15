@@ -1,5 +1,5 @@
 .movies-container {
-  margin: 70px auto 0 auto;
+  margin: 80px auto 0 auto;
   max-width: 1140px;
   display: grid;
   grid-template-columns: repeat(auto-fit, 360px);
@@ -18,13 +18,13 @@
 @media (max-width: 810px) {
   .movies-container {
     grid-template-columns: repeat(auto-fit, 339px);
-    row-gap: 39px;
   }
 }
 
 
 @media (max-width: 370px) {
   .movies-container {
+    margin-top: 50px;
     grid-template-columns: repeat(auto-fit, 300px);
     row-gap: 39px;
   }

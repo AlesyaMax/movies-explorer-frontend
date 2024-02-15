@@ -26,6 +26,12 @@
   flex-direction: column; 
 }
 
+@media (max-width: 1024px) {
+  .form_container {
+    padding-top: 232px;
+  }
+}
+
 @media (max-width: 650px) {
   .form_container {
     padding-top: 56px;

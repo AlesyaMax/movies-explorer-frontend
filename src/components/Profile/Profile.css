@@ -1,3 +1,7 @@
+.profile__form_container {
+  max-width: 410px;
+}
+
 .profile__title {
   margin-top: 4px;
   margin-bottom: 123px;
@@ -6,6 +10,7 @@
 
 .profile__input-element {
   margin-top: 17px;
+  margin-bottom: 0;
   display: grid;
   grid-template-columns: repeat(2, auto);
   justify-content: space-between;
@@ -92,6 +97,10 @@
 }
   
 @media (max-width: 650px) {
+  .profile__form_container {
+    max-width: 260px;
+  }
+  
   .profile__title {
     margin-top: 14px;
     margin-bottom: 80px;

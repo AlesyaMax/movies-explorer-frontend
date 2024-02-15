@@ -53,16 +53,21 @@
   .footer {
     padding: 0 30px;
   }
+
+  .footer__info {
+    margin-top: 59px;
+  }
 }
 
 @media (max-width: 650px) {
   .footer {
     padding: 0 10px;
     position: relative;
-    height: 253px;
+    max-height: 253px;
   }
 
   .footer__info {
+    margin-top: 79px;
     margin-bottom: 30px;
     font-size: 12px;
     line-height: 14.52px;

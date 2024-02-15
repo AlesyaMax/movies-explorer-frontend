@@ -9,10 +9,14 @@
 .page-not-found__code {
   margin-top: 246px;
   margin-bottom: 5px;
+  width: 400px;
+  height: 169px;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 140px;
   font-weight: 400;
   color: #fff;
+  text-align: center;
+  line-height: 169px;
 }
 
 .page-not-found__message {
@@ -26,6 +30,7 @@
 .page-not-found__redirection {
   margin-top: 184px;
   margin-bottom: 60px;
+  padding: 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -55,6 +60,9 @@
     margin-top: 329px;
     margin-bottom: 10px;
     font-size: 80px;
+    width: 300px;
+    line-height: 96.82px;
+    height: 97px;
   }
 
   .page-not-found__message {
@@ -62,6 +70,7 @@
   }
 
 .page-not-found__redirection {
+  margin-top: 284px;
   margin-bottom: 30px;
   font-size: 12px;
 }

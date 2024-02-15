@@ -87,7 +87,7 @@
   }
 
   .techs__title {
-    margin-top: 80px;
+    margin-top: 70px;
     border-bottom: 1px solid #000;
   }
 
@@ -95,13 +95,14 @@
     margin-top: 60px;
     margin-bottom: 24px;
     font-size: 30px;
-    letter-spacing: 1.2px;
+    letter-spacing: -1.2px;
     line-height: 36.31px;
   }
 
   .techs__paragraph {
     min-width: 292px;
     margin-bottom: 50px;
+    letter-spacing: -0.44px;
   }
 
   .techs__navtab {

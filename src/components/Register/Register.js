@@ -59,7 +59,7 @@ function Register(props) {
           onChange={handleChange}
         />
        
-        <ErrorMessage errorMessage="При регистрации пользователя произошла ошибка."/>
+        <ErrorMessage hasErrors={true} errorMessage="При регистрации пользователя произошла ошибка."/>
         <FormButton buttonText="Зарегистрироваться"/>
         <FormLink address="/signin" linkText="Уже зарегистрированы?" linkButton="Войти"/>
       </Form>

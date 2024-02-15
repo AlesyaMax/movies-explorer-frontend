@@ -30,7 +30,8 @@
   }
   
   .promo__title {
-    max-width: 680px;
+    margin-top: 350px;
+    max-width: 660px;
     font-size: 40px;
     line-height: 52px;
     letter-spacing: -1.6px;
@@ -39,12 +40,16 @@
 
 @media (max-width: 767px) {
   .promo {
+    margin-top: 14px;
     margin-left: 14px;
     margin-right: 14px;
-    height: 586px;
+    max-height: 586px;
+    justify-content: flex-start;
   }
   
   .promo__title {
+    margin-top: 220px;
+    margin-bottom: 212px;
     min-width: 292px;
     font-size: 29px;
     line-height: 37px;
