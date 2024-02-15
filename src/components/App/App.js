@@ -16,7 +16,6 @@ function App() {
   const currentPath = window.location.pathname;
   const [isLoggedIn, setIsLoggedIn] = useState(true); //На следующем этапе прописать запрос на создание / проверку / удаление токена для обновления переменной
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const [isMovieSaved, setIsMovieSaved] = useState(false); //На следующем этапе прописать запрос на проверку статуса фильма и его добавление / удаление из сохраненных
   const [checkboxIcon, setCheckboxIcon] = useState(checkboxOff);
   const [hasErrors, setHasErrors] = useState(false); //На следующем этапе прописать валидацию данных
   const [isLoading, setIsLoading] = useState(false); //На следующем этапе прописать загрузку при выполнении запросов

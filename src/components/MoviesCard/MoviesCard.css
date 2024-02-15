@@ -34,12 +34,9 @@
   color: #FFFFFF;
 }
 
-.button_remove-movie {
+.button_saved-movie {
   width: 21px;
   height: 21px;
-  background-image: url(../../images/saved.svg);
-  background-position: center;
-  object-fit: contain;
   border: none;
   background-color: transparent;
 }
