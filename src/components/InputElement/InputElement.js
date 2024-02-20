@@ -7,6 +7,8 @@ function InputElement(props) {
       id={props.id}
       name={props.name}
       type={props.type} 
+      minLength={props.minLength}
+      maxLength={props.maxLength}
       placeholder={props.placeholder} 
       required 
       disabled={props.isDisabled}

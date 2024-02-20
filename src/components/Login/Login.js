@@ -43,6 +43,8 @@ function Login(props) {
           id="password" 
           type="password" 
           name="password"
+          minLength="2"
+          maxLength="30"
           placeholder="Введите пароль" 
           hasSecretValue={true}
           onChange={handleChange}

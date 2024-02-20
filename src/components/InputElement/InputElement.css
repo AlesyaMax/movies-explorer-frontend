@@ -31,6 +31,12 @@
   margin-bottom: 0;
 }
 
+.input:focus {
+  outline-style: solid;
+  outline-color: #8B8B8B;
+  outline-width: 2px;
+}
+
 .input_secret {
   color: #EE3465;
 }

@@ -42,6 +42,8 @@ function Profile(props) {
           id="name" 
           type="text" 
           name="name"
+          minLength="2"
+          maxLength="30"
           placeholder="Виталий" 
           inputValue={props.name}
           isDisabled={props.isInEditingMode ? false : true}
