@@ -13,7 +13,7 @@ class AboutMe extends React.Component {
           <h3 className='student_info__name'>Виталий</h3>
           <p className='student_info__subtitle'>Фронтенд-разработчик, 30 лет</p>
           <Paragraph additionalClass='student_info__description' text="Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы."/>
-          <img className='student_info__photo' alt="фото" src={studentPhoto}></img>
+          <img className='student_info__photo' alt="Фотография студента Яндекс.Практикума" src={studentPhoto}></img>
           <a className='student_info__github-link' href="https://github.com/AlesyaMax" target="blank">Github</a>
         </article>
         <p className='student__portfolio'>Портфолио</p>
