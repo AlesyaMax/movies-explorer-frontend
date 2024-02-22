@@ -7,9 +7,20 @@
   row-gap: 10px;
 }
 
-.navtab__link {
+.navtab__point {
+  margin: 0;
+  padding: 0;
   width: 96px;
   height: 36px;
+  background-color: #303030;
+  border-radius: 10px;
+  display: flex;
+  list-style-type: none;
+}
+
+.navtab__link {
+  width: 100%;
+  height: 100%;
   text-decoration: none;
   color: #FFFFFF;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -17,8 +28,6 @@
   font-weight: 500;
   line-height: 36px;
   text-align: center;
-  background-color: #303030;
-  border-radius: 10px;
 }
 
 .navtab__link:hover {
@@ -30,10 +39,13 @@
     margin-bottom: 17px;
     column-gap: 6px;
   }
-  
-  .navtab__link {
+
+  .navtab__point {
     width: 82px;
     height: 26px;
+  }
+  
+  .navtab__link {
     line-height: 26px;
     font-size: 10px;
   }

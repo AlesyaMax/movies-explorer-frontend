@@ -7,7 +7,7 @@ function PageNotFound(props) {
     <main className='page-not-found'>
       <h1 className='page-not-found__code'>404</h1>
       <p className='page-not-found__message'>Страница не найдена</p>
-      <button className='page-not-found__redirection' onClick={handleBackRedirection}>Назад</button>
+      <button className='page-not-found__redirection' type="button" onClick={handleBackRedirection}>Назад</button>
     </main>
   )
 }

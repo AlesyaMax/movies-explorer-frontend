@@ -1,6 +1,5 @@
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
@@ -12,8 +11,7 @@ function Movies(props) {
     <>
       <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn} onLogoClick={props.onLogoClick}/>
       <main className='movies'>
-        <SearchForm/>
-        <FilterCheckbox checkboxIcon={props.checkboxIcon} onFilterClick={props.onFilterClick}/>
+        <SearchForm checkboxIcon={props.checkboxIcon} onFilterClick={props.onFilterClick}/>
        {props.isLoading 
         ? (<Preloader/>)
         : (props.isMovieFound 

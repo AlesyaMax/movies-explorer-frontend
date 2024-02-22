@@ -17,11 +17,17 @@ class AboutMe extends React.Component {
           <a className='student_info__github-link' href="https://github.com/AlesyaMax" target="blank">Github</a>
         </article>
         <p className='student__portfolio'>Портфолио</p>
-        <nav className='student_projects'>
-          <a className='student_projects__item' href="https://github.com/AlesyaMax/how-to-learn.git" target="blank">Статичный сайт<img className="student_projects__link-icon" alt='ссылка' src={linkIcon}></img></a>
-          <a className='student_projects__item' href="https://alesyamax.github.io/russian-travel/" target="blank">Адаптивный сайт<img className="student_projects__link-icon" alt='ссылка' src={linkIcon}></img></a>
-          <a className='student_projects__item' href="https://github.com/AlesyaMax/react-mesto-api-full-gha.git" target="blank">Одностраничное приложение<img className="student_projects__link-icon" alt='ссылка' src={linkIcon}></img></a>
-        </nav>
+        <ul className='student_projects'>
+          <li className='student_projects__item'>
+            <a className='student_projects__link' href="https://github.com/AlesyaMax/how-to-learn.git" target="blank">Статичный сайт<img className="student_projects__link-icon" alt='ссылка' src={linkIcon}></img></a>
+          </li>
+          <li className='student_projects__item'>
+            <a className='student_projects__link' href="https://alesyamax.github.io/russian-travel/" target="blank">Адаптивный сайт<img className="student_projects__link-icon" alt='ссылка' src={linkIcon}></img></a>
+          </li>
+          <li className='student_projects__item'>
+            <a className='student_projects__link' href="https://github.com/AlesyaMax/react-mesto-api-full-gha.git" target="blank">Одностраничное приложение<img className="student_projects__link-icon" alt='ссылка' src={linkIcon}></img></a>
+          </li>
+        </ul>
       </section>
     )
   }

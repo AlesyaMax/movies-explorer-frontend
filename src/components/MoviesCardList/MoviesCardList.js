@@ -7,12 +7,12 @@ function MoviesCardList(props) {
   return(
     <>
     {props.isOnlySavedMovies 
-      ? (<section className='movies-container'> {props.cardsSet.map((card) => {if (card.owner === currentUser.id) {
+      ? (<ul className='movies-container'> {props.cardsSet.map((card) => {if (card.owner === currentUser.id) {
         return <MoviesCard key={card.movieId} movieData={card} isOnlySavedMovies={props.isOnlySavedMovies} isMovieSaved={true}/>}
 })}
-    </section>)
-    : (<section className='movies-container'> {props.cardsSet.map((card) => (<MoviesCard key={card.movieId} movieData={card} isOnlySavedMovies={props.isOnlySavedMovies} isMovieSaved={false}/>
-    ))} </section>)
+    </ul>)
+    : (<ul className='movies-container'> {props.cardsSet.map((card) => (<MoviesCard key={card.movieId} movieData={card} isOnlySavedMovies={props.isOnlySavedMovies} isMovieSaved={false}/>
+    ))} </ul>)
     }
     <MoreButton/>
 </> )

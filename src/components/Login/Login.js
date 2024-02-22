@@ -25,7 +25,7 @@ function Login(props) {
   };
 
   return (
-    <>
+    <main>
       <Form 
         withLogo={true} 
         title="Рады видеть!"
@@ -50,10 +50,10 @@ function Login(props) {
           onChange={handleChange}
         />
         <ErrorMessage errorMessage="Вы ввели неправильный логин или пароль."/>
-        <FormButton buttonText="Войти" additionalButtonClass="button_login"/>
+        <FormButton buttonText="Войти" additionalButtonClass="button_login" type="submit"/>
         <FormLink address="/signup" linkText="Ещё не зарегистрированы?" linkButton="Регистрация"/>
       </Form>
-    </>
+    </main>
   )
 }
 

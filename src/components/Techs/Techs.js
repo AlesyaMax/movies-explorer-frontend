@@ -8,7 +8,7 @@ class Techs extends React.Component {
     return (
       <section className='techs' id="techs">
         <SectionTitle additionalClass="techs__title" sectionTitle="Технологии"/>
-        <p className='techs__article_title'>7 технологий</p>
+        <h3 className='techs__article_title'>7 технологий</h3>
         <Paragraph additionalClass="techs__paragraph" text="На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте."/>
         <NavTab additionalClass="techs__navtab" pointsSet={
           [

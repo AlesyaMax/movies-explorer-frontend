@@ -29,6 +29,7 @@ function Profile(props) {
   return (
     <>
     <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn} onLogoClick={props.onLogoClick}/>
+    <main>
       <Form withLogo={false} 
       additionalContainerClass="profile__form_container"
       title="Привет, Виталий!"
@@ -65,7 +66,7 @@ function Profile(props) {
         {props.isInEditingMode 
           ? (<>
             <ErrorMessage hasErrors={false} errorMessage="При обновлении профиля произошла ошибка." additionalErrorClass="profile__error-message"/>
-            <FormButton buttonText="Сохранить" additionalButtonClass="profile__button_save"/>
+            <FormButton buttonText="Сохранить" additionalButtonClass="profile__button_save" type="submit"/>
             </>)
           : (<>
             <Paragraph additionalClass="profile__edit" text="Редактировать" onClickFunction={props.onEditProfile}/>
@@ -73,6 +74,7 @@ function Profile(props) {
             </>)
         } 
       </Form>
+    </main>
     </>
   )
 }

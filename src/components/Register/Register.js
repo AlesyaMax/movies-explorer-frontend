@@ -26,7 +26,7 @@ function Register(props) {
   };
   
   return (
-    <>
+    <main>
       <Form withLogo={true} 
       title="Добро пожаловать!"
       onSubmit={handleSubmit}>
@@ -64,10 +64,10 @@ function Register(props) {
         />
        
         <ErrorMessage hasErrors={true} errorMessage="При регистрации пользователя произошла ошибка."/>
-        <FormButton buttonText="Зарегистрироваться"/>
+        <FormButton buttonText="Зарегистрироваться" type="submit"/>
         <FormLink address="/signin" linkText="Уже зарегистрированы?" linkButton="Войти"/>
       </Form>
-    </>
+    </main>
   )
 }
 

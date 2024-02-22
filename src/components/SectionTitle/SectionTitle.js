@@ -1,6 +1,6 @@
 function SectionTitle(props) {
   return (
-    <h3 className={`section-title ${props.additionalClass}`}>{props.sectionTitle}</h3>
+    <h2 className={`section-title ${props.additionalClass}`}>{props.sectionTitle}</h2>
   )
 }
 
