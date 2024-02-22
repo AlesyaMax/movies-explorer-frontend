@@ -5,15 +5,15 @@
 
 .student_info {
   margin: 66px 0 101px 0;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  display: grid;
+  grid-template-columns: minmax(108px, 600px) auto;
+  column-gap: 49px;
+  grid-template-rows: 58px 64px max-content 116px;
 }
 
 .student_info__name {
   margin: 0;
-  width: 54.5%;
-  max-width: 600px;
+  width: 100%;
   color: #fff;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 50px;
@@ -24,8 +24,7 @@
 
 .student_info__subtitle {
   margin: 18px 0 26px 0;
-  width: 54.5%;
-  max-width: 600px;
+  width: 100%;
   color: #fff;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 18px;
@@ -34,18 +33,17 @@
 }
 
 .student_info__description {
-  width: 54.5%;
-  max-width: 600px;
+  width: 100%;
   line-height: 22px;
 }
 
 .student_info__photo {
+  margin-left: auto;
   width: 270px;
   height: 327px;
-  position: absolute;
-  top: 0;
-  right: 0;
   border-radius: 10px;
+  grid-column: 2/3;
+  grid-row: 1/5;
 }
 
 .student_info__github-link {
@@ -115,6 +113,7 @@
 
   .student_info {
     margin-bottom: 91px;
+    grid-template-rows: 40px 54px max-content 104px;
   }
 
   .student_info__name {
@@ -166,10 +165,12 @@
   .student_info {
     margin-top: 60px;
     margin-bottom: 70px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 352px 76px 56px max-content 57px;
   }
 
   .student_info__name {
-    margin-top: 392px;
+    margin-top: 40px;
     width: 100%;
     font-size: 30px;
     letter-spacing: -1.2px;
@@ -189,11 +190,11 @@
   }
 
   .student_info__photo {
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
+    margin-right: auto;
     width: 292px;
     height: 352px;
+    grid-column: 1/2;
+    grid-row: 1/2;
   }
 
   .student_info__github-link {
