@@ -1,0 +1,11 @@
+.no-movies {
+  margin: 70px auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-movies__message {
+  color: #8B8B8B;
+}

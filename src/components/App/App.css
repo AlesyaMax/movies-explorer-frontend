@@ -1,0 +1,7 @@
+.App {
+  margin: 0 auto;
+  min-width: 320px;
+  min-height: 100vh;
+  height: fit-content;
+  background-color: #202020;
+}
