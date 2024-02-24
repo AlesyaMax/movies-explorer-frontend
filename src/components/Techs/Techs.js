@@ -7,38 +7,45 @@ class Techs extends React.Component {
   render() {
     return (
       <section className='techs' id="techs">
-        <SectionTitle additionalClass="techs__title" sectionTitle="Технологии"/>
-        <h3 className='techs__article_title'>7 технологий</h3>
+        <SectionTitle additionalClass="techs__section-title" sectionTitle="Технологии"/>
+        <h3 className='techs__title'>7 технологий</h3>
         <Paragraph additionalClass="techs__paragraph" text="На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте."/>
         <NavTab additionalClass="techs__navtab" pointsSet={
           [
             {"id": "techsHTML",
           "name": "HTML",
-          "additionalClass": "techs__navtab_item",
+          "additionalPointClass": "techs__navtab-item",
+          "additionalLinkClass": "techs__navtab-link"
           },
           {"id": "techsCSS",
           "name": "CSS",
-          "additionalClass": "techs__navtab_item",
+          "additionalPointClass": "techs__navtab-item",
+          "additionalLinkClass": "techs__navtab-link"
           },
           {"id": "techsJS",
           "name": "JS",
-          "additionalClass": "techs__navtab_item",
+          "additionalPointClass": "techs__navtab-item",
+          "additionalLinkClass": "techs__navtab-link"
           },
           {"id": "techsReact",
           "name": "React",
-          "additionalClass": "techs__navtab_item",
+          "additionalPointClass": "techs__navtab-item",
+          "additionalLinkClass": "techs__navtab-link"
           },
           {"id": "techsGit",
           "name": "Git",
-          "additionalClass": "techs__navtab_item",
+          "additionalPointClass": "techs__navtab-item",
+          "additionalLinkClass": "techs__navtab-link"
           },
           {"id": "techsExpress.js",
           "name": "Express.js",
-          "additionalClass": "techs__navtab_item",
+          "additionalPointClass": "techs__navtab-item",
+          "additionalLinkClass": "techs__navtab-link"
           },
           {"id": "techsmongoDB",
           "name": "mongoDB",
-          "additionalClass": "techs__navtab_item",
+          "additionalPointClass": "techs__navtab-item",
+          "additionalLinkClass": "techs__navtab-link"
           },
           ]
         }/>

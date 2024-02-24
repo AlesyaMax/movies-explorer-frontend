@@ -6,20 +6,29 @@ class Promo extends React.Component {
     return (
       <section className='promo'>
         <h1 className='promo__title'>Учебный проект студента факультета Веб&#8209;разработки.</h1>
-        <NavTab pointsSet={
-          [{"id": "promoAboutProject",
-          "name": "О проекте",
-          "link": "#about-project"
-          },
-          {"id": "promoTechno",
-          "name": "Технологии",
-          "link": "#techs"
-          },
-          {"id": "promoStudent",
-          "name": "Студент",
-          "link": "#about-me"
-          },
-          ]}
+        <NavTab 
+          additionalClass=""
+          pointsSet={
+            [{"id": "promoAboutProject",
+            "name": "О проекте",
+            "link": "#about-project",
+            "additionalPointClass": "",
+            "additionalLinkClass": ""
+            },
+            {"id": "promoTechno",
+            "name": "Технологии",
+            "link": "#techs",
+            "additionalPointClass": "",
+            "additionalLinkClass": ""
+            },
+            {"id": "promoStudent",
+            "name": "Студент",
+            "link": "#about-me",
+            "additionalPointClass": "",
+            "additionalLinkClass": ""
+            },
+            ]
+          }
         />
       </section>
     )

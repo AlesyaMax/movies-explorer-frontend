@@ -1,4 +1,4 @@
-.profile__form_container {
+.profile {
   max-width: 410px;
 }
 
@@ -97,7 +97,7 @@
 }
   
 @media (max-width: 650px) {
-  .profile__form_container {
+  .profile {
     max-width: 260px;
   }
   

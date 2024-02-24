@@ -1,10 +1,10 @@
-.movie__item {
+.movie {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
 
-.movie {
+.movie__card {
   margin: 0 auto;
   width: 360px;
   height: 231px;
@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-.button_save-movie {
+.movie__button_save-movie {
   width: 72px;
   height: 21px;
   border: 0;
@@ -40,7 +40,7 @@
   color: #FFFFFF;
 }
 
-.button_saved-movie {
+.movie__button_saved-movie {
   width: 21px;
   height: 21px;
   border: none;
@@ -54,7 +54,7 @@
   border-radius: 8px;
 }
 
-.movie_caption {
+.movie__caption {
   margin: 14px 14px 0 14px;
   width: 100%;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -62,7 +62,7 @@
   justify-content: space-between;
 }
 
-.movie_caption__name {
+.movie__name {
   margin: 0;
   font-size: 13px;
   font-weight: 500;
@@ -70,7 +70,7 @@
   color: #FFFFFF;
 }
 
-.movie_caption__duration {
+.movie__duration {
   margin: 0;
   font-size: 11px;
   font-weight: 400;
@@ -85,19 +85,19 @@
 
 
 @media (max-width: 810px) {
-  .movie {
+  .movie__card {
     width: 339px;
   }
   .movie__image {
     height: 190px;
   }
-  .movie_caption {
+  .movie__caption {
     margin: 25px 0 0 0;
   }
 }
 
 @media (max-width: 370px) {
-  .movie {
+  .movie__card {
     width: 300px;
     height: 199px;
   }
@@ -111,11 +111,11 @@
     height: 168px;
   }
 
-  .movie_caption {
+  .movie__caption {
     margin-top: 16px;
   }
 
-  .movie_caption__name {
+  .movie__name {
     font-size: 12px;
     font-weight: 500;
     line-height: 14.52px;

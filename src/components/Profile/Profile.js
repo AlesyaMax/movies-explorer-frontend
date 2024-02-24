@@ -31,7 +31,7 @@ function Profile(props) {
     <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn} onLogoClick={props.onLogoClick}/>
     <main>
       <Form withLogo={false} 
-      additionalContainerClass="profile__form_container"
+      additionalContainerClass="profile"
       title="Привет, Виталий!"
       additionalTitleClass="profile__title"
       onSubmit={handleSubmit}>

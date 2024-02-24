@@ -28,9 +28,13 @@ function Register(props) {
   return (
     <main>
       <Form withLogo={true} 
+      additionalContainerClass=""
       title="Добро пожаловать!"
       onSubmit={handleSubmit}>
         <InputElement 
+          inputElementClass=""
+          additionalLabelClass=""
+          additionalInputClass=""
           label="Имя" 
           id="name" 
           type="text" 
@@ -42,7 +46,10 @@ function Register(props) {
           onChange={handleChange}
         />
         
-        <InputElement 
+        <InputElement
+          inputElementClass=""
+          additionalLabelClass=""
+          additionalInputClass="" 
           label="E-mail" 
           id="email" 
           type="email" 
@@ -52,6 +59,9 @@ function Register(props) {
         />
         
         <InputElement 
+          inputElementClass=""
+          additionalLabelClass=""
+          additionalInputClass=""
           label="Пароль" 
           id="password" 
           type="password" 

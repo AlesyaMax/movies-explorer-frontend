@@ -28,9 +28,13 @@ function Login(props) {
     <main>
       <Form 
         withLogo={true} 
+        additionalContainerClass=""
         title="Рады видеть!"
         onSubmit={handleSubmit}>
         <InputElement 
+          inputElementClass=""
+          additionalLabelClass=""
+          additionalInputClass=""
           label="E-mail" 
           id="email" 
           type="email" 
@@ -39,6 +43,9 @@ function Login(props) {
           onChange={handleChange}
         />
         <InputElement 
+          inputElementClass=""
+          additionalLabelClass=""
+          additionalInputClass=""
           label="Пароль" 
           id="password" 
           type="password" 

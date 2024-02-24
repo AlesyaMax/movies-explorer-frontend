@@ -11,22 +11,22 @@
   grid-column: 1/6;
 }
 
-.about-project_article {
+.about-project__article {
   margin-top: 70px;
   margin-bottom: 110px;
   min-width: 284px;
   max-width: 550px;
 }
 
-.about-project_article:first-of-type {
+.about-project__article:first-of-type {
   margin-right: 20px;
 }
 
-.about-project_article:nth-of-type(2) {
+.about-project__article:nth-of-type(2) {
   margin-left: 20px;
 }
 
-.article__title {
+.about-project__article-title {
   margin: 0 0 26px 0;
   max-width: 550px;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -37,26 +37,26 @@
   color: #fff;
 }
 
-.article__paragraph {
+.about-project__article-paragraph {
   max-width: 550px;
 }
 
-.about-project_timeline {
+.about-project__timeline {
   width: 100%;
   grid-column: 1/3;
   display: grid;
   grid-template-columns: 1fr 4fr;
 }
 
-.about-project_timeline_back-end {
+.about-project__back-end {
   grid-column: 1/2;
 }
 
-.about-project_timeline_front-end {
+.about-project__front-end {
   grid-column: 2/6;
 }
 
-.timeline__duration {
+.about-project__timeline-duration {
   margin: 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -66,17 +66,17 @@
   height: 36px;
 }
 
-.timeline__duration_back-end {
+.about-project__timeline-duration_back-end {
   color: #000000;
   background-color: #3DDC84;
 }
 
-.timeline__duration_front-end {
+.about-project__timeline-duration_front-end {
   color: #FFFFFF;
   background-color: #303030;
 }
 
-.timeline__description {
+.about-project__timeline-description {
   margin: 14px 0 0 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -91,23 +91,23 @@
     margin: 90px 50px 90px 50px;
   }
 
-  .about-project_article {
+  .about-project__article {
     margin-bottom: 93px;
   }
 
-  .about-project_article:first-of-type {
+  .about-project__article:first-of-type {
     margin-right: 15px;
   }
 
-  .about-project_article:nth-of-type(2) {
+  .about-project__article:nth-of-type(2) {
     margin-left: 15px;
   }
 
-  .article__title {
+  .about-project__article-title {
     margin-bottom: 22px;
   }
 
-  .timeline__description {
+  .about-project__timeline-description {
     color: #A0A0A0;
   }
 }
@@ -123,21 +123,21 @@
     grid-column: 1/2;
   }
 
-  .about-project_article {
+  .about-project__article {
     margin-top: 56px;
     margin-bottom: 0;
   }
 
-  .about-project_article:first-of-type {
+  .about-project__article:first-of-type {
     margin-right: 0;
     margin-top: 60px;
   }
 
-  .about-project_article:nth-of-type(2) {
+  .about-project__article:nth-of-type(2) {
     margin-left: 0;
   }
 
-  .article__title {
+  .about-project__article-title {
     margin-top: 0;
     margin-bottom: 16px;
     font-size: 18px;
@@ -145,18 +145,18 @@
     line-height: 21.78px;
   }
 
-  .about-project_timeline {
+  .about-project__timeline {
     grid-column: 1/2;
     margin-top: 60px;
     grid-template-columns: 0.35fr 0.65fr;
   }
 
-  .timeline__duration {
+  .about-project__timeline-duration {
     font-size: 11px;
     line-height: 35px;
   }
 
-  .timeline__description {
+  .about-project__timeline-description {
     margin: 10px 0 0 0;
     font-size: 11px;
     font-weight: 400;

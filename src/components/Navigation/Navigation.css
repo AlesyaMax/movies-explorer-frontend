@@ -27,7 +27,7 @@
   display: none;
 }
 
-.navigation_authorized__link {
+.navigation__link_authorized {
   text-decoration: none;
   color: #fff;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -113,7 +113,7 @@
     margin-right: 30px;
   }
   
-  .navigation_authorized__link {
+  .navigation__link_authorized {
     margin: 0 0 28px 0;
     font-size: 18px;
     font-weight: 500;
