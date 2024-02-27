@@ -11,7 +11,7 @@ function Movies(props) {
     <>
       <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn} onLogoClick={props.onLogoClick}/>
       <main className='movies'>
-        <SearchForm checkboxIcon={props.checkboxIcon} onFilterClick={props.onFilterClick}/>
+        <SearchForm isFilterOn={props.isFilterOn} onSearchSubmit={props.onSearchSubmit}/>
        {props.isLoading 
         ? (<Preloader/>)
         : (props.isMovieFound 

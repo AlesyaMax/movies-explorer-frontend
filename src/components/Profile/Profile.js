@@ -5,34 +5,63 @@ import Header from '../Header/Header';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import FormButton from '../FormButton/FormButton';
 import Paragraph from '../Paragraph/Paragraph';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 
 function Profile(props) {
-  const [formValue, setFormValue] = useState({
-    name: "",
-    email: ""
-  });
+  const currentUser = useContext(CurrentUserContext);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");  
+  const [isDisabled, setIsDisabled] = useState(true);
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    setFormValue({
-      ...formValue,
-      [name]: value,
+  useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
+  
+  function handleChangeName(evt) {
+    setName(evt.target.value);
+    if(!evt.target.validity.valid) {
+      setIsDisabled(true);
+    } else {
+      if(evt.target.value === currentUser.name) {
+        setIsDisabled(true);
+      } else {
+        setIsDisabled(false);
+      };
+    }
+  }
+
+  function handleChangeEmail(evt) {
+    setEmail(evt.target.value)
+    if(!evt.target.validity.valid) {
+      setIsDisabled(true);
+    } else {
+      if(evt.target.value === currentUser.email) {
+        setIsDisabled(true);
+      } else {
+        setIsDisabled(false);
+      };
+    }
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    setIsDisabled(true)
+    props.onSubmit({
+      name,
+      email,
     });
-  };
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.onSubmit(formValue);
-  };
   return (
     <>
     <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn} onLogoClick={props.onLogoClick}/>
     <main>
       <Form withLogo={false} 
       additionalContainerClass="profile"
-      title="Привет, Виталий!"
+      title={`Привет, ${currentUser.name}!`}
       additionalTitleClass="profile__title"
       onSubmit={handleSubmit}>
         <InputElement 
@@ -45,10 +74,10 @@ function Profile(props) {
           name="name"
           minLength="2"
           maxLength="30"
-          placeholder="Виталий" 
-          inputValue={props.name}
+          placeholder={currentUser.name || "Введите имя"}
+          value={name}
           isDisabled={props.isInEditingMode ? false : true}
-          onChange={handleChange}
+          onChange={handleChangeName}
         />
         <InputElement 
           inputElementClass="profile__input-element" 
@@ -58,19 +87,19 @@ function Profile(props) {
           id="email" 
           type="email"  
           name="email"
-          placeholder="pochta@yandex.ru" 
-          inputValue={props.email}
+          placeholder={currentUser.email || "Введите почту"}
+          value={email}
           isDisabled={props.isInEditingMode ? false : true}
-          onChange={handleChange}
+          onChange={handleChangeEmail}
         />
         {props.isInEditingMode 
           ? (<>
             <ErrorMessage hasErrors={false} errorMessage="При обновлении профиля произошла ошибка." additionalErrorClass="profile__error-message"/>
-            <FormButton buttonText="Сохранить" additionalButtonClass="profile__button_save" type="submit"/>
+            <FormButton isDisabled={isDisabled} buttonText="Сохранить" additionalButtonClass="profile__button_save" type="submit"/>
             </>)
           : (<>
             <Paragraph additionalClass="profile__edit" text="Редактировать" onClickFunction={props.onEditProfile}/>
-            <FormLink address="/signin" linkText="Выйти из аккаунта" additionalLinkClass="profile__link"/>
+            <FormLink address="/signin" linkText="Выйти из аккаунта" additionalLinkClass="profile__link" onClick={props.onSignOut}/>
             </>)
         } 
       </Form>

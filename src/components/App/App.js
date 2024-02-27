@@ -7,20 +7,22 @@ import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Profile from '../Profile/Profile';
 import React, { useState, useEffect } from 'react';
-import checkboxOn from "../../images/smalltumb.svg";
-import checkboxOff from "../../images/smalltumboff.svg";
-import {cardsSet} from "../../utils/constants";
+import moviesApi from "../../utils/MoviesApi";
+import mainApi from '../../utils/MainApi';
+import {CurrentUserContext} from '../../context/CurrentUserContext';
 
 function App() {
-
   const currentPath = window.location.pathname;
-  const [isLoggedIn, setIsLoggedIn] = useState(true); //На следующем этапе прописать запрос на создание / проверку / удаление токена для обновления переменной
+  const [isLoggedIn, setIsLoggedIn] = useState(true); 
+  const [currentUser, setCurrentUser] = useState({});
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const [checkboxIcon, setCheckboxIcon] = useState(checkboxOff);
   const [hasErrors, setHasErrors] = useState(false); //На следующем этапе прописать валидацию данных
-  const [isLoading, setIsLoading] = useState(false); //На следующем этапе прописать загрузку при выполнении запросов
-  const [isMovieFound, setIsMovieFound] = useState(true); //На следующем этапе прописать результат поиска при выполнении запросов
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMovieFound, setIsMovieFound] = useState(false);
   const [isInEditingMode, setIsInEditingMode] = useState(false);
+  const [foundMovies, setFoundMovies] = useState({});
+  const [authData, setAuthData] = useState({});
+
 
   const navigate = useNavigate();
 
@@ -44,14 +46,6 @@ function App() {
     }
   }
 
-  function handleFilterClick() {
-    if(checkboxIcon === checkboxOn) {
-      setCheckboxIcon(checkboxOff);
-    } else {
-      setCheckboxIcon(checkboxOn);
-    }
-  }
-
   function switchEditingMode() {
     if(isInEditingMode) {
       setIsInEditingMode(false);
@@ -60,21 +54,132 @@ function App() {
     }
   }
 
-  function handleProfileSubmit(data) {
-    switchEditingMode()
-  } //В следующем этапе настроить обновление пользователя на сервере
+  function handleProfileSubmit(userInfo) {
+    switchEditingMode();
+    mainApi
+      .editUserInfo(userInfo)
+      .then((newUserInfo) => {
+        setCurrentUser(newUserInfo);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleRegisterSubmit(data) {
-  } //В следующем этапе настроить запись пользователя на сервере
+    mainApi
+      .register(data)
+      .then((res) => {
+        setAuthData(res);
+        navigate("/movies")
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleLoginSubmit(data) {
-  } //В следующем этапе настроить проверку пользователя на сервере
-  
+    mainApi
+      .authorization(data)
+      .then((res) => {
+        setIsLoggedIn(true);
+        setAuthData(data);
+        navigate("/movies");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } 
+
+  function searchShortMovies(data, searchRequest) {
+    const movies = data.filter((item) => item.duration < '41' && (item.nameRU.toLowerCase().includes(`${searchRequest}`) || item.nameEN.toLowerCase().includes(`${searchRequest}`))); 
+    return movies;
+  }
+
+  function searchAllMovies(data, searchRequest) {
+    const movies = data.filter((item) => item.nameRU.toLowerCase().includes(`${searchRequest}`) || item.nameEN.toLowerCase().includes(`${searchRequest}`)); 
+    return movies;
+  }
+
+  function saveSearchResult(movies) {
+    if(movies.length > 0) {
+      setFoundMovies(movies);
+      localStorage.setItem("recentSearchResult", JSON.stringify(movies));
+      setIsMovieFound(true);
+    } else {
+      setIsMovieFound(false);
+    }
+  }
+
+  function handleMovieSearch(data, searchRequest) {
+    const isFilterOn = localStorage.getItem("filterState");
+    if (isFilterOn === "true") {
+      const movies = searchShortMovies(data, searchRequest);
+      saveSearchResult(movies);
+    } else {
+      const movies = searchAllMovies(data, searchRequest);
+      saveSearchResult(movies);
+    }
+  }
+
+  function handleSearchSubmit(searchRequest) {
+    const movies = JSON.parse(localStorage.getItem("movies"));
+    if(movies && movies.length > 0) {
+      handleMovieSearch(movies, searchRequest);
+    } else {
+      setIsLoading(true);
+      moviesApi
+        .getMovies()
+        .then((res) => {
+          localStorage.setItem("movies", JSON.stringify(res));
+          handleMovieSearch(res, searchRequest);
+          setIsLoading(false)})
+        .catch((err) => console.log(err));
+    }
+  }
+
+  function handleSignOut() {
+    navigate("/signout", {replace: true});
+    mainApi.signOut()
+    .then(() => {
+      localStorage.clear();
+      navigate("/signin", {replace: true})
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+  }
+
   useEffect(() => {
     setIsMenuOpened(false);
   }, [currentPath]);
 
+  useEffect(() => {
+    const searchRequest = localStorage.getItem("searchRequest");
+    if(searchRequest && searchRequest.length > 0) {
+      const movies = JSON.parse(localStorage.getItem("movies"));
+      handleMovieSearch(movies, searchRequest);
+      return;
+    } 
+  }, [])
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      mainApi
+        .getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [isLoggedIn]);
+
+  console.log(currentUser);
+
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <Routes>
       <Route 
         path="/" 
@@ -89,14 +194,13 @@ function App() {
         element={<Movies 
           isMenuOpened={isMenuOpened} 
           onMenuClick={handleClickOnMenu} 
-          isLoggedIn={isLoggedIn} 
-          checkboxIcon={checkboxIcon} 
-          onFilterClick={handleFilterClick} 
+          isLoggedIn={isLoggedIn}  
           onLogoClick={handleLogoClick}
           isLoading={isLoading}
           isMovieFound={isMovieFound}
-          cardsSet={cardsSet}
+          cardsSet={foundMovies}
           isOnlySavedMovies={false}
+          onSearchSubmit={handleSearchSubmit}
         />}
       />
       <Route 
@@ -105,13 +209,12 @@ function App() {
           isMenuOpened={isMenuOpened} 
           onMenuClick={handleClickOnMenu} 
           isLoggedIn={isLoggedIn} 
-          checkboxIcon={checkboxIcon} 
-          onFilterClick={handleFilterClick} 
           onLogoClick={handleLogoClick}
           isLoading={isLoading}
           isMovieFound={isMovieFound}
-          cardsSet={cardsSet}
+          cardsSet={foundMovies}
           isOnlySavedMovies={true}
+          onSearchSubmit={handleSearchSubmit}
         />}
       />
       <Route 
@@ -124,12 +227,16 @@ function App() {
           isInEditingMode={isInEditingMode}
           onEditProfile={switchEditingMode}
           onSubmit={handleProfileSubmit}
+          onSignOut={handleSignOut}
+          name={currentUser.name}
+          email={currentUser.email}
         />}
       />
       <Route path="/signup" element={<Register onSubmit={handleRegisterSubmit}/>}></Route>
       <Route path="/signin" element={<Login onSubmit={handleLoginSubmit}/>}></Route>
       <Route path="*" element={<PageNotFound/>}></Route>
-    </Routes>)
+    </Routes>
+    </CurrentUserContext.Provider>)
 }
 
 export default App;

@@ -6,13 +6,12 @@ function SavedMovies(props) {
       isMenuOpened={props.isMenuOpened} 
       onMenuClick={props.onMenuClick} 
       isLoggedIn={props.isLoggedIn} 
-      checkboxIcon={props.checkboxIcon} 
-      onFilterClick={props.onFilterClick} 
       onLogoClick={props.onLogoClick}
       isLoading={props.isLoading}
       isMovieFound={props.isMovieFound}
       cardsSet={props.cardsSet}
-      isOnlySavedMovies={props.isOnlySavedMovies}>
+      isOnlySavedMovies={false}
+      onSearchSubmit={props.onSearchSubmit}>
       <div className='section-divider'></div>
       </Movies>
   )

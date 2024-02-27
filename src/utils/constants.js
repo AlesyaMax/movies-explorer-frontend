@@ -1,52 +1,7 @@
-export const cardsSet = [
-  {"country": "",
-  "director": "",
-  "duration": "1ч 17м",
-  "year": "",
-  "description": "",
-  "image": "https://s3-alpha-sig.figma.com/img/71a2/3794/3bfd6b9af4141d2ee15e36a186b073a7?Expires=1709510400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=olZQg4G59CUUxA3W40falXEqOwR1Sz0NnU4nqXkuEy-Eao2sFayLlSFW3F07di1VWgwJOxQmAHM8-gmvgub0kB2LpGFbi5Nt~imTIYumLZhMneHvCSODxPnsvmhsbxBRt7SCOi780PZ-SdKxWnZ4Gpu46uctA60xoUCujhyZsJG2U83WMjzPFV6kQr8BrMhec18n42SucLXS2JpZhgOH~ayGOp4nMRICfpAK9gLSL3d2s4lS0gHlnoorE51gwwylMpIYVVNaSdj9t7NuQjB1U~F0Ghh4oT5pSVHRyDjzM1Z5~kKmOEnvsKX-eQcl4cn~dcgbAl-hMZkpnPvxxAVfUQ__",
-  "trailerLink": "",
-  "thumbnail": "",
-  "movieId": "1",
-  "nameRU": "33 слова о дизайне",
-  "nameEN": ""
-  },
-  {"country": "",
-  "director": "",
-  "duration": "1ч 17м",
-  "year": "",
-  "description": "",
-  "image": "https://s3-alpha-sig.figma.com/img/71a2/3794/3bfd6b9af4141d2ee15e36a186b073a7?Expires=1709510400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=olZQg4G59CUUxA3W40falXEqOwR1Sz0NnU4nqXkuEy-Eao2sFayLlSFW3F07di1VWgwJOxQmAHM8-gmvgub0kB2LpGFbi5Nt~imTIYumLZhMneHvCSODxPnsvmhsbxBRt7SCOi780PZ-SdKxWnZ4Gpu46uctA60xoUCujhyZsJG2U83WMjzPFV6kQr8BrMhec18n42SucLXS2JpZhgOH~ayGOp4nMRICfpAK9gLSL3d2s4lS0gHlnoorE51gwwylMpIYVVNaSdj9t7NuQjB1U~F0Ghh4oT5pSVHRyDjzM1Z5~kKmOEnvsKX-eQcl4cn~dcgbAl-hMZkpnPvxxAVfUQ__",
-  "trailerLink": "",
-  "thumbnail": "",
-  "movieId": "2",
-  "nameRU": "33 слова о дизайне",
-  "nameEN": "",
-  "owner": '123'  
-  },
-  {"country": "",
-  "director": "",
-  "duration": "1ч 17м",
-  "year": "",
-  "description": "",
-  "image": "https://s3-alpha-sig.figma.com/img/71a2/3794/3bfd6b9af4141d2ee15e36a186b073a7?Expires=1709510400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=olZQg4G59CUUxA3W40falXEqOwR1Sz0NnU4nqXkuEy-Eao2sFayLlSFW3F07di1VWgwJOxQmAHM8-gmvgub0kB2LpGFbi5Nt~imTIYumLZhMneHvCSODxPnsvmhsbxBRt7SCOi780PZ-SdKxWnZ4Gpu46uctA60xoUCujhyZsJG2U83WMjzPFV6kQr8BrMhec18n42SucLXS2JpZhgOH~ayGOp4nMRICfpAK9gLSL3d2s4lS0gHlnoorE51gwwylMpIYVVNaSdj9t7NuQjB1U~F0Ghh4oT5pSVHRyDjzM1Z5~kKmOEnvsKX-eQcl4cn~dcgbAl-hMZkpnPvxxAVfUQ__",
-  "trailerLink": "",
-  "thumbnail": "",
-  "movieId": "3",
-  "nameRU": "33 слова о дизайне",
-  "nameEN": "",
-  "owner": '123' 
-  },
-  {"country": "",
-  "director": "",
-  "duration": "1ч 17м",
-  "year": "",
-  "description": "",
-  "image": "https://s3-alpha-sig.figma.com/img/71a2/3794/3bfd6b9af4141d2ee15e36a186b073a7?Expires=1709510400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=olZQg4G59CUUxA3W40falXEqOwR1Sz0NnU4nqXkuEy-Eao2sFayLlSFW3F07di1VWgwJOxQmAHM8-gmvgub0kB2LpGFbi5Nt~imTIYumLZhMneHvCSODxPnsvmhsbxBRt7SCOi780PZ-SdKxWnZ4Gpu46uctA60xoUCujhyZsJG2U83WMjzPFV6kQr8BrMhec18n42SucLXS2JpZhgOH~ayGOp4nMRICfpAK9gLSL3d2s4lS0gHlnoorE51gwwylMpIYVVNaSdj9t7NuQjB1U~F0Ghh4oT5pSVHRyDjzM1Z5~kKmOEnvsKX-eQcl4cn~dcgbAl-hMZkpnPvxxAVfUQ__",
-  "trailerLink": "",
-  "thumbnail": "",
-  "movieId": "4",
-  "nameRU": "33 слова о дизайне",
-  "nameEN": ""
-  }
-]
+export const moviesURL = "https://api.nomoreparties.co/beatfilm-movies";
+
+export const errorMessages = {
+  wrongType: "Введен неверный формат данных",
+  tooLong: "Превышено максимально допустимое количество символов",
+  tooShort: "Необходимо ввести не менее 2 символов"
+};
