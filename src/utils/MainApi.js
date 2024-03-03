@@ -59,24 +59,37 @@ class MainApi {
   }
 
 
-getUserInfo() {
-  return this._getRequest(`${this._url}/users/me`, {
-    method: "GET",
-    credentials: "include",
-    headers: this._headers,
-  });
-}
-
-  saveMovie() {
-
+  getUserInfo() {
+    return this._getRequest(`${this._url}/users/me`, {
+      method: "GET",
+      credentials: "include",
+      headers: this._headers,
+    });
   }
 
-  removeMovie() {
+  saveMovie(data) {
+    return this._getRequest(`${this._url}/movies`, {
+      method: "POST",
+      credentials: "include",
+      headers: this._headers,
+      body: JSON.stringify(data),
+    });
+    }
 
+  removeMovie(id) {
+    return this._getRequest(`${this._url}/movies/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: this._headers,
+    });
   }
 
   getSavedMovies() {
-
+    return this._getRequest(`${this._url}/movies`, {
+      method: "GET",
+      credentials: "include",
+      headers: this._headers,
+    });
   }
 }
 

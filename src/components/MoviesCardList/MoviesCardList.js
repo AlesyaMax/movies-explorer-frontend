@@ -3,7 +3,6 @@ import MoreButton from '../MoreButton/MoreButton';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
-  const currentUser = {id: '123'};
   const windowSize = window.innerWidth;
   
   function getInitialCardsAmount() {
@@ -20,7 +19,7 @@ function MoviesCardList(props) {
 
   const initialCardsAmount = getInitialCardsAmount();
 
-  const [cards, setCards] = useState(props.cardsSet.slice(0, initialCardsAmount));
+  const [cards, setCards] = useState(props.cardsSet);
   const [cardsAmount, setCardsAmount] = useState(initialCardsAmount);
   const [moreMovies, setMoreMovies] = useState(true);
 
@@ -32,6 +31,7 @@ function MoviesCardList(props) {
       if(windowSize > 767) {
         setCardsAmount(cardsAmount+8)
         setCards(props.cardsSet.slice(0, cardsAmount))
+        console.log(moreMovies)
       } else {
         setCardsAmount(cardsAmount+2)
         setCards(props.cardsSet.slice(0, cardsAmount))
@@ -51,18 +51,19 @@ function MoviesCardList(props) {
     setCards(props.cardsSet.slice(0, initialCardsAmount))
   }, [props.cardsSet])
 
+  useEffect(() => {
+    if(props.cardsSet.length > 0) {
+      setCards(props.cardsSet.slice(0, initialCardsAmount));
+    };
+  }, [])
+
   return(
     <>
-    {props.isOnlySavedMovies 
-      ? (<ul className='movies-container'> {props.cardsSet.map((card) => {if (card.owner === currentUser.id) {
-        return <MoviesCard key={card.id} movieData={card} isOnlySavedMovies={props.isOnlySavedMovies} isMovieSaved={true}/>}
-})}
-    </ul>)
-    : (<ul className='movies-container'> {cards.map((card) => (<MoviesCard key={card.id} movieData={card} isOnlySavedMovies={props.isOnlySavedMovies} isMovieSaved={false}/>
-    ))} </ul>)
-    }
-    {moreMovies && <MoreButton onMoreButtonClick={handleMoreButtonClick}/>}
-</> )
+      <ul className='movies-container'>{cards.map((card) => (<MoviesCard key={card.id} movieData={card} isOnlySavedMovies={props.isOnlySavedMovies} onMovieStatusClick={props.onMovieStatusClick}/>))}
+      </ul>)
+      {moreMovies && <MoreButton onMoreButtonClick={handleMoreButtonClick}/>}
+    </>
+  )
 }
 
 export default MoviesCardList;

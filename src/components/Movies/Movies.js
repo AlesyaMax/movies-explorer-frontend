@@ -5,7 +5,6 @@ import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 import NoMoviesFound from '../NoMoviesFound/NoMoviesFound';
 
-
 function Movies(props) {
   return (
     <>
@@ -14,8 +13,8 @@ function Movies(props) {
         <SearchForm isFilterOn={props.isFilterOn} onSearchSubmit={props.onSearchSubmit}/>
        {props.isLoading 
         ? (<Preloader/>)
-        : (props.isMovieFound 
-          ? (<MoviesCardList cardsSet={props.cardsSet} isOnlySavedMovies={props.isOnlySavedMovies}/>) 
+        : (props.hasMoviesToShow
+          ? (<MoviesCardList cardsSet={props.cardsSet} isOnlySavedMovies={props.isOnlySavedMovies} onMovieStatusClick={props.onMovieStatusClick}/>) 
           : (<NoMoviesFound />)
           )
         }
