@@ -3,39 +3,61 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm(props) {  
   const [searchRequest, setSearchRequest] = useState("");
+  const [searchSavedRequest, setSearchSavedRequest] = useState("");
   const [hasErrors, setHasErrors] = useState(false);
   const [isFilterOn, setIsFilterOn] = useState(false);
+  const [isFilterOnSaved, setIsFilterOnSaved] = useState(false);
 
   const handleChange = (e) => {
     const {value} = e.target;
-    setSearchRequest(value.toLowerCase());
+    if(!props.isOnlySavedMovies) {
+      setSearchRequest(value.toLowerCase());
+    } else {
+      setSearchSavedRequest(value.toLowerCase());   
+    }
   }
 
-  const handleSearch = () => {
-    if(searchRequest.length < 1) {
+  const handleSearch = (request, filterState, key) => {
+    if(request.length < 1) {
       setHasErrors(true);
     } else {
       setHasErrors(false);
-      props.onSearchSubmit(searchRequest);
-      localStorage.setItem("searchRequest", searchRequest);
+      props.onSearchSubmit(request, filterState);
+      localStorage.setItem(`${key}`, request);
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSearch();
-  }
+    if(props.isOnlySavedMovies) {
+      handleSearch(searchSavedRequest, isFilterOnSaved, "searchSavedRequest");
+    } else {
+      handleSearch(searchRequest, isFilterOn, "searchRequest");
+    }
+  };
 
-  const handleFilterClick = () => {
-    console.log("filter");
-    if(isFilterOn === "true") {
+  const handleGeneralFilterClick = () => {
+    if(isFilterOn) {
       setIsFilterOn(false)
+      localStorage.setItem("filterState", false);
+      handleSearch(searchRequest, false, "searchRequest");
     } else {
       setIsFilterOn(true)
+      localStorage.setItem("filterState", true);
+      handleSearch(searchRequest, true, "searchRequest");
     };
-    localStorage.setItem("filterState", isFilterOn);
-    handleSearch();
+  }
 
+  const handleSavedFilterClick = () => {
+    if(isFilterOnSaved) {
+      setIsFilterOnSaved(false)
+      localStorage.setItem("filterSavedState", false);
+      handleSearch(searchSavedRequest, false, "searchSavedRequest");
+    } else {
+      setIsFilterOnSaved(true)
+      localStorage.setItem("filterSavedState", true);
+      handleSearch(searchSavedRequest, true, "searchSavedRequest");
+    };
   }
 
   useEffect(() => {
@@ -47,12 +69,21 @@ function SearchForm(props) {
     }
   }, [])
 
+  useEffect(() => {
+    const searchSavedRequest = localStorage.getItem("searchSavedRequest");
+    const isFilterOnSaved = localStorage.getItem("filterSavedState");
+    if (searchSavedRequest && searchSavedRequest.length > 0) {
+      setSearchSavedRequest(searchSavedRequest)
+      setIsFilterOnSaved(isFilterOnSaved);
+    }
+  }, [])
+
   return (
     <form className='search-form' onSubmit={handleSubmit} noValidate>
-      <input className='search-form__input' type="text" placeholder='Фильм' required onChange={handleChange} value={searchRequest}></input>
+      <input className='search-form__input' type="text" placeholder='Фильм' required onChange={handleChange} value={props.isOnlySavedMovies ? searchSavedRequest : searchRequest}></input>
       <button className='search-form__button' type="submit"></button>
       <p className={`search-form__error ${hasErrors ? "search-form__error_visible" : ""}`}>Нужно ввести ключевое слово</p>
-      <FilterCheckbox isFilterOn={isFilterOn} onFilterClick={handleFilterClick}/>
+      <FilterCheckbox isFilterOn={isFilterOn} isFilterOnSaved={isFilterOnSaved} onFilterClick={handleGeneralFilterClick} onSavedFilterClick={handleSavedFilterClick} isOnlySavedMovies={props.isOnlySavedMovies}/>
     </form>
   )
 }

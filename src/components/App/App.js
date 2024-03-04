@@ -228,21 +228,21 @@ function saveSearchResult(movies) {
   }
 };
 
-function handleMovieSearch(data, searchRequest) {
-  const isFilterOn = getStoredData("filterState");
-  if (isFilterOn === "true") {
+function handleMovieSearch(data, searchRequest, filterState) {
+  if (filterState) {
     const movies = searchShortMovies(data, searchRequest);
-    saveSearchResult(movies);
+    return movies;
   } else {
     const movies = searchAllMovies(data, searchRequest);
-    saveSearchResult(movies);
+    return movies;
   }
 }
 
-function handleSearchSubmit(searchRequest) {
+function handleGeneralSearchSubmit(searchRequest, filterState) {
   const movies = getStoredData("movies");
   if(movies && movies.length > 0) {
-    handleMovieSearch(movies, searchRequest);
+    const searchResult = handleMovieSearch(movies, searchRequest, filterState);
+    saveSearchResult(searchResult);
   } else {
     setIsLoading(true);
     moviesApi
@@ -251,10 +251,28 @@ function handleSearchSubmit(searchRequest) {
         const moviesSet = configMovies(res);
         const checkedMoviesSet = checkIfSaved(moviesSet);
         storeData("movies", checkedMoviesSet)
-        handleMovieSearch(checkedMoviesSet, searchRequest);
+        const searchResult = handleMovieSearch(checkedMoviesSet, searchRequest, filterState);
+        saveSearchResult(searchResult);
         setIsLoading(false)})
       .catch((err) => console.log(err));
   }
+}
+
+function handleSavedSearchSubmit(searchRequest, filterState) {
+  setIsLoading(true);
+  const movies = getStoredData("savedMovies");
+  if(movies && movies.length > 0) {
+    const searchResult = handleMovieSearch(movies, searchRequest, filterState);
+    if(searchResult.length > 0) {
+      setSavedMovies(searchResult);
+      setHasSavedMoviesToShow(true)
+    } else {
+      setHasSavedMoviesToShow(false)
+    }
+  } else {
+    setHasSavedMoviesToShow(false)
+  }
+  setIsLoading(false);
 }
 
   useEffect(() => {
@@ -263,9 +281,11 @@ function handleSearchSubmit(searchRequest) {
 
   useEffect(() => {
     const searchRequest = localStorage.getItem("searchRequest");
+    const filterState = localStorage.getItem("filterState");
     if(searchRequest && searchRequest.length > 0) {
       const movies = getStoredData("movies");
-      handleMovieSearch(movies, searchRequest);
+      const searchResult = handleMovieSearch(movies, searchRequest, filterState);
+      saveSearchResult(searchResult);
       return;
     } 
   }, [])
@@ -311,7 +331,7 @@ function handleSearchSubmit(searchRequest) {
           cardsSet={foundMovies}
           isOnlySavedMovies={false}
           onMovieStatusClick={changeMovieStatus}
-          onSearchSubmit={handleSearchSubmit}
+          onSearchSubmit={handleGeneralSearchSubmit}
         />}
       />
       <Route 
@@ -326,7 +346,7 @@ function handleSearchSubmit(searchRequest) {
           cardsSet={savedMovies}
           isOnlySavedMovies={true}
           onMovieStatusClick={changeMovieStatus}
-          onSearchSubmit={handleSearchSubmit}
+          onSearchSubmit={handleSavedSearchSubmit}
         />}
       />
       <Route 

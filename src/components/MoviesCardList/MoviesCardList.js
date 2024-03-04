@@ -48,7 +48,7 @@ function MoviesCardList(props) {
   }, [cardsAmount, props.cardsSet])
 
   useEffect(() => {
-    setCards(props.cardsSet.slice(0, initialCardsAmount))
+    setCards(props.cardsSet.slice(0, cardsAmount))
   }, [props.cardsSet])
 
   useEffect(() => {

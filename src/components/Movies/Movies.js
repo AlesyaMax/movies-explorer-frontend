@@ -10,7 +10,7 @@ function Movies(props) {
     <>
       <Header isMenuOpened={props.isMenuOpened} onMenuClick={props.onMenuClick} isLoggedIn={props.isLoggedIn} onLogoClick={props.onLogoClick}/>
       <main className='movies'>
-        <SearchForm isFilterOn={props.isFilterOn} onSearchSubmit={props.onSearchSubmit}/>
+        <SearchForm isFilterOn={props.isFilterOn} onSearchSubmit={props.onSearchSubmit} isOnlySavedMovies={props.isOnlySavedMovies}/>
        {props.isLoading 
         ? (<Preloader/>)
         : (props.hasMoviesToShow
