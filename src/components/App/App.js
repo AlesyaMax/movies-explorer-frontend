@@ -10,6 +10,8 @@ import React, { useState, useEffect } from 'react';
 import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 import {CurrentUserContext} from '../../context/CurrentUserContext';
+import Popup from '../Popup/Popup';
+import {errorMessages, successMessages} from '../../utils/constants';
 
 function App() {
   const currentPath = window.location.pathname;
@@ -22,9 +24,18 @@ function App() {
   const [savedMovies, setSavedMovies] = useState({});
   const [hasMoviesToShow, setHasMoviesToShow] = useState(false);
   const [hasSavedMoviesToShow, setHasSavedMoviesToShow] = useState(false);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupMessage, setPopupMessage] = useState("");
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
 
   const navigate = useNavigate();
+
+  function handleClosePopup() {
+    setIsPopupVisible(false);
+    setPopupTitle("");
+    setPopupMessage("")
+  }
 
   function handleLogoClick() {
     navigate("/", { replace: true })
@@ -59,10 +70,20 @@ function App() {
     mainApi
       .editUserInfo(userInfo)
       .then((newUserInfo) => {
-        setCurrentUser(...currentUser, newUserInfo);
+        setCurrentUser(newUserInfo);
+        setPopupTitle(successMessages.updateTitle);
+        setPopupMessage(successMessages.updateMessage);
+        setIsPopupVisible(true);
       })
       .catch((err) => {
         console.log(err);
+        setPopupTitle(errorMessages.errorTitle);
+        setIsPopupVisible(true);
+        if(err.status === 409) {
+          setPopupMessage(errorMessages.duplicateError);
+        } else {
+          setPopupMessage(errorMessages.serverError);
+        }
       });
   }
 
@@ -72,10 +93,21 @@ function App() {
       .then((res) => {
         localStorage.setItem("userId", res._id);
         setCurrentUser(res);
-        navigate("/movies")
+        setPopupTitle(successMessages.registerTitle);
+        setPopupMessage(successMessages.registerMessage);
+        setIsPopupVisible(true);
+        navigate("/movies");
+        setIsLoggedIn(true);
       })
       .catch((err) => {
         console.log(err);
+        setPopupTitle(errorMessages.errorTitle);
+        setIsPopupVisible(true);
+        if(err.status === 409) {
+          setPopupMessage(errorMessages.duplicateError);
+        } else {
+          setPopupMessage(errorMessages.serverError);
+        }
       });
   }
 
@@ -86,10 +118,28 @@ function App() {
         localStorage.setItem("userId", res._id);
         setIsLoggedIn(true);
         setCurrentUser(data);
+        setPopupTitle(successMessages.loginTitle);
+        setPopupMessage(successMessages.loginMessage);
+        setIsPopupVisible(true);
         navigate("/movies");
       })
       .catch((err) => {
         console.log(err);
+        setPopupTitle(errorMessages.errorTitle);
+        setIsPopupVisible(true);
+        switch(err.status) {
+          case 400: 
+            setPopupMessage(errorMessages.authError);
+            break;
+          case 401:
+            setPopupMessage(errorMessages.wrongLogin);
+            break;
+          case 403:
+            setPopupMessage(errorMessages.wrongToken);
+            break;
+          default:
+            setPopupMessage(errorMessages.serverError);
+        }
       });
   } 
 
@@ -110,6 +160,9 @@ function App() {
     })
     .catch((err) => {
       console.log(err)
+      setPopupTitle(errorMessages.errorTitle);
+      setPopupMessage(errorMessages.serverError);
+      setIsPopupVisible(true);
     });
   }
 
@@ -125,6 +178,18 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
+          setPopupTitle(errorMessages.errorTitle);
+          setIsPopupVisible(true);
+          switch(err.status) {
+            case 401:
+              setPopupMessage(errorMessages.wrongToken);
+              break;
+            case 403: 
+              setPopupMessage(errorMessages.authError);
+              break;
+            default:
+              setPopupMessage(errorMessages.serverError);
+          }
         });
     }
   }
@@ -167,7 +232,12 @@ function App() {
         storeData("savedMovies", moviesSavedByUser);
         setHasSavedMoviesToShow(true)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err);
+        setPopupTitle(errorMessages.errorTitle);
+        setPopupMessage(errorMessages.serverError);
+        setIsPopupVisible(true);
+      })
   }
 
  function handleSaveMovie(movie) {
@@ -182,6 +252,9 @@ function App() {
         })
       .catch((err) => {
         console.log(err);
+        setPopupTitle(errorMessages.errorTitle);
+        setPopupMessage(errorMessages.serverError);
+        setIsPopupVisible(true);
       });
  }
 
@@ -197,6 +270,9 @@ function App() {
     })
     .catch((err) => {
       console.log(err);
+      setPopupTitle(errorMessages.errorTitle);
+      setPopupMessage(errorMessages.serverError);
+      setIsPopupVisible(true);
     });
  }
 
@@ -254,7 +330,12 @@ function handleGeneralSearchSubmit(searchRequest, filterState) {
         const searchResult = handleMovieSearch(checkedMoviesSet, searchRequest, filterState);
         saveSearchResult(searchResult);
         setIsLoading(false)})
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setPopupTitle(errorMessages.errorTitle);
+        setPopupMessage(errorMessages.serverError);
+        setIsPopupVisible(true);
+      });
   }
 }
 
@@ -300,6 +381,9 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
         })
         .catch((err) => {
           console.log(err);
+          setPopupTitle(errorMessages.errorTitle);
+          setPopupMessage(errorMessages.serverError);
+          setIsPopupVisible(true);
         });
     }
   }, [isLoggedIn]);
@@ -368,6 +452,7 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
       <Route path="/signin" element={<Login onSubmit={handleLoginSubmit}/>}></Route>
       <Route path="*" element={<PageNotFound/>}></Route>
     </Routes>
+    <Popup isPopupVisible={isPopupVisible} onClose={handleClosePopup} title={popupTitle} message={popupMessage}/>
     </CurrentUserContext.Provider>)
 }
 

@@ -10,6 +10,15 @@ function Login(props) {
     email: "",
     password: ""
   });
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const checkValidity = (e) => {
+    if(formValue.email === "" || formValue.password === "" || !e.target.validity.valid) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -17,6 +26,7 @@ function Login(props) {
       ...formValue,
       [name]: value,
     });
+    checkValidity(e);
   };
 
   const handleSubmit = (e) => {
@@ -57,7 +67,7 @@ function Login(props) {
           onChange={handleChange}
         />
         <ErrorMessage errorMessage="Вы ввели неправильный логин или пароль."/>
-        <FormButton buttonText="Войти" additionalButtonClass="button_login" type="submit"/>
+        <FormButton buttonText="Войти" additionalButtonClass="button_login" type="submit" isDisabled={isDisabled}/>
         <FormLink address="/signup" linkText="Ещё не зарегистрированы?" linkButton="Регистрация"/>
       </Form>
     </main>

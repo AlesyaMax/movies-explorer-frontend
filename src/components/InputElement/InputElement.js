@@ -1,30 +1,16 @@
-import {errorMessages} from "../../utils/constants";
 import { useState } from 'react';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import {identifyError} from '../../utils/input-validation';
 
 
 function InputElement(props) {
   const [hasErrors, setHasErrors] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const identifyError = (validity) => {
-    if(validity.typeMismatch) {
-      setErrorMessage(errorMessages.wrongType)
-      return;
-    } 
-    if(validity.tooLong) {
-      setErrorMessage(errorMessages.tooLong)
-      return;
-    }
-    if(validity.tooShort) {
-      setErrorMessage(errorMessages.tooShort)
-    }
-  }
-
   const checkValidity = (e) => {
     if(!e.target.validity.valid) {
       setHasErrors(true);
-      identifyError(e.target.validity)
+      identifyError(e.target.validity, setErrorMessage)
     } else {
       setHasErrors(false);
     }

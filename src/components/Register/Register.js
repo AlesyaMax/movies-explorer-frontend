@@ -1,7 +1,6 @@
 import Form from '../Form/Form';
 import InputElement from '../InputElement/InputElement';
 import FormLink from '../FormLink/FormLink';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import FormButton from '../FormButton/FormButton';
 import { useState } from 'react';
 
@@ -11,6 +10,15 @@ function Register(props) {
     email: "",
     password: ""
   });
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const checkValidity = (e) => {
+    if(formValue.name === "" || formValue.email === "" || formValue.password === "" || !e.target.validity.valid) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -18,6 +26,7 @@ function Register(props) {
       ...formValue,
       [name]: value,
     });
+    checkValidity(e);
   };
 
   const handleSubmit = (e) => {
@@ -73,8 +82,8 @@ function Register(props) {
           onChange={handleChange}
         />
        
-        <ErrorMessage hasErrors={true} errorMessage="При регистрации пользователя произошла ошибка."/>
-        <FormButton buttonText="Зарегистрироваться" type="submit"/>
+        {/* <ErrorMessage hasErrors={true} errorMessage="При регистрации пользователя произошла ошибка."/> */}
+        <FormButton buttonText="Зарегистрироваться" type="submit" isDisabled={isDisabled}/>
         <FormLink address="/signin" linkText="Уже зарегистрированы?" linkButton="Войти"/>
       </Form>
     </main>
