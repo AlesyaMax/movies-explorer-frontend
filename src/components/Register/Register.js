@@ -90,8 +90,6 @@ function Register(props) {
           hasSecretValue={true} 
           onChange={handleChange}
         />
-       
-        {/* <ErrorMessage hasErrors={true} errorMessage="При регистрации пользователя произошла ошибка."/> */}
         <FormButton buttonText="Зарегистрироваться" type="submit" isDisabled={isDisabled}/>
         <FormLink address="/signin" linkText="Уже зарегистрированы?" linkButton="Войти"/>
       </Form>

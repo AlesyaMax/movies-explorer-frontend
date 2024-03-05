@@ -32,12 +32,3 @@ class AboutProject extends React.Component {
 }
 
 export default AboutProject;
-
-{/* <div className='about-project__timeline_back-end'>
-<p className='timeline__duration timeline__duration_back-end'>1 неделя</p>
-<p className='timeline__description'>Back-end</p>
-</div>
-<div className='about-project__timeline__front-end'>
-<p className='timeline__duration timeline__duration_front-end'>4 недели</p>
-<p className='timeline__description'>Front-end</p>
-</div> */}

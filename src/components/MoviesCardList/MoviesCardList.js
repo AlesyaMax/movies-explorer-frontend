@@ -3,31 +3,9 @@ import MoreButton from '../MoreButton/MoreButton';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
-  const windowSize = window.innerWidth;
   const moviesPath = "/movies";
   const savedMoviesPath = "/saved-movies";
   const currentPath = window.location.pathname;
-  // const [device, setDevice] = useState("");
-  const [initialAmount, setInitialAmount] = useState("");
-
-  // const initialCardsAmount;
-  // const additionalCardsAmount;
-  // set of screens: laptop, tablet, mobile;
-  
-  // function func() {
-  //   let initialAmount;
-  //   if(window.innerWidth > 1279) {
-  //     initialAmount = 12;
-  //   } else {
-  //     if(window.innerWidth > 767) {
-  //       initialAmount = 8;
-  //     } else {
-  //       initialAmount = 5;
-  //     }
-  //   }
-  //   console.log(window.innerWidth);
-  //   console.log(initialAmount);
-  // }
 
   function getInitialCardsAmount() {
     if(window.innerWidth > 1279) {

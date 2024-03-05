@@ -12,6 +12,7 @@ import mainApi from '../../utils/MainApi';
 import {CurrentUserContext} from '../../context/CurrentUserContext';
 import Popup from '../Popup/Popup';
 import {errorMessages, successMessages} from '../../utils/constants';
+import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const currentPath = window.location.pathname;
@@ -409,10 +410,11 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
       />
       <Route 
         path="/movies" 
-        element={<Movies 
+        element={<ProtectedRouteElement 
+          isLoggedIn={isLoggedIn}
+          element={Movies}
           isMenuOpened={isMenuOpened} 
           onMenuClick={handleClickOnMenu} 
-          isLoggedIn={isLoggedIn}  
           onLogoClick={handleLogoClick}
           isLoading={isLoading}
           hasMoviesToShow={hasMoviesToShow}
@@ -421,14 +423,15 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
           onMovieStatusClick={changeMovieStatus}
           onSearchSubmit={handleGeneralSearchSubmit}
           showNotFoundResult={showNotFoundResult}
-        />}
+          />}
       />
       <Route 
         path="/saved-movies" 
-        element={<SavedMovies 
+        element={<ProtectedRouteElement
+          isLoggedIn={isLoggedIn}
+          element={SavedMovies}
           isMenuOpened={isMenuOpened} 
           onMenuClick={handleClickOnMenu} 
-          isLoggedIn={isLoggedIn} 
           onLogoClick={handleLogoClick}
           isLoading={isLoading}
           hasMoviesToShow={hasSavedMoviesToShow}
@@ -437,21 +440,22 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
           onMovieStatusClick={changeMovieStatus}
           onSearchSubmit={handleSavedSearchSubmit}
           showNotFoundResult={showNotFoundResult}
-        />}
+          />}
       />
       <Route 
         path="/profile" 
-        element={<Profile 
-          isMenuOpened={isMenuOpened} 
-          onMenuClick={handleClickOnMenu} 
-          isLoggedIn={isLoggedIn} 
-          onLogoClick={handleLogoClick}
-          isInEditingMode={isInEditingMode}
-          onEditProfile={switchEditingMode}
-          onSubmit={handleProfileSubmit}
-          onSignOut={handleSignOut}
-          name={currentUser.name}
-          email={currentUser.email}
+        element={<ProtectedRouteElement
+        isLoggedIn={setIsLoggedIn}
+        element={Profile}
+        isMenuOpened={isMenuOpened} 
+        onMenuClick={handleClickOnMenu} 
+        onLogoClick={handleLogoClick}
+        isInEditingMode={isInEditingMode}
+        onEditProfile={switchEditingMode}
+        onSubmit={handleProfileSubmit}
+        onSignOut={handleSignOut}
+        name={currentUser.name}
+        email={currentUser.email}
         />}
       />
       <Route path="/signup" element={<Register isLoggedIn={isLoggedIn} onSubmit={handleRegisterSubmit}/>}></Route>
