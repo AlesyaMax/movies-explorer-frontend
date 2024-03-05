@@ -12,7 +12,8 @@ function SavedMovies(props) {
       cardsSet={props.cardsSet}
       isOnlySavedMovies={props.isOnlySavedMovies}
       onMovieStatusClick={props.onMovieStatusClick}
-      onSearchSubmit={props.onSearchSubmit}>
+      onSearchSubmit={props.onSearchSubmit}
+      showNotFoundResult={props.showNotFoundResult}>
       <div className='section-divider'></div>
       </Movies>
   )

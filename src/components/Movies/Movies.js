@@ -15,7 +15,7 @@ function Movies(props) {
         ? (<Preloader/>)
         : (props.hasMoviesToShow
           ? (<MoviesCardList cardsSet={props.cardsSet} isOnlySavedMovies={props.isOnlySavedMovies} onMovieStatusClick={props.onMovieStatusClick}/>) 
-          : (<NoMoviesFound />)
+          : (props.showNotFoundResult && <NoMoviesFound />)
           )
         }
         {props.children}

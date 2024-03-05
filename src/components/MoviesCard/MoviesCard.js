@@ -22,10 +22,10 @@ function MoviesCard(props) {
   return (
     <li className='movie'>
       <figure className='movie__card'>
+        <a className='movie__link' href={props.movieData.trailerLink} target="blank"><img className='movie__image' alt={`Обложка фильма ${props.movieData.nameRU}`} src={props.movieData.image}></img></a>
         {isMovieSaved 
         ? (<button className="movie__button movie__button_saved-movie" type="button"><img className="movie__button-icon" alt="сохранено" src={props.isOnlySavedMovies ? removeIcon : savedIcon} onClick={handleButtonClick}/></button>)
         : (<button className='movie__button movie__button_save-movie' type="button" onClick={handleButtonClick}>Сохранить</button>)}
-        <img className='movie__image' alt={`Обложка фильма ${props.movieData.nameRU}`} src={props.movieData.image}></img>
         <figcaption className="movie__caption">
           <p className='movie__name'>{props.movieData.nameRU}</p>
           <p className='movie__duration'>{calculateDuration(props.movieData.duration)}</p>

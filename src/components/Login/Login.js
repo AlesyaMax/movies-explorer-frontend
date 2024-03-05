@@ -3,9 +3,12 @@ import InputElement from '../InputElement/InputElement';
 import FormLink from '../FormLink/FormLink';
 import FormButton from '../FormButton/FormButton';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login(props) {
+  const navigate = useNavigate();
+
   const [formValue, setFormValue] = useState({
     email: "",
     password: ""
@@ -33,6 +36,12 @@ function Login(props) {
     e.preventDefault();
     props.onSubmit(formValue);
   };
+
+  useEffect(() => {
+    if(props.isLoggedIn) {
+      navigate("/", { replace: true })
+    } 
+  })
 
   return (
     <main>

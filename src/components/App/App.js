@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -27,6 +27,7 @@ function App() {
   const [popupTitle, setPopupTitle] = useState("");
   const [popupMessage, setPopupMessage] = useState("");
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [showNotFoundResult, setShowNotFoundResult] = useState(false);
 
 
   const navigate = useNavigate();
@@ -156,7 +157,7 @@ function App() {
     mainApi.signOut()
     .then(() => {
       localStorage.clear();
-      navigate("/signin", {replace: true})
+      navigate("/", {replace: true})
     })
     .catch((err) => {
       console.log(err)
@@ -174,7 +175,6 @@ function App() {
         .then((res) => {
           setCurrentUser(res);
           setIsLoggedIn(true);
-          navigate("/movies", { replace: true });
         })
         .catch((err) => {
           console.log(err);
@@ -262,8 +262,11 @@ function App() {
   const movieToRemove = savedMovies.filter((m) => m.movieId === movie.movieId);
   mainApi
     .removeMovie(movieToRemove[0]._id)
-    .then(() => {
-      getSavedMovies();
+    .then(() => {    
+      setSavedMovies((state) => state.filter((sm) => sm.movieId !== movie.movieId)); 
+      const savedMoviesSet = getStoredData("savedMovies");
+      const updatedSavedMoviesSet = savedMoviesSet.filter((sm) => sm.movieId !== movie.movieId);
+      storeData("savedMovies", updatedSavedMoviesSet); 
       const updatedMoviesSet = checkIfSaved(getStoredData("movies"));
       storeData("movies", updatedMoviesSet);
       setFoundMovies((state) => state.map((m) => (m.movieId === movie.movieId ? movie : m)));
@@ -367,6 +370,7 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
       const movies = getStoredData("movies");
       const searchResult = handleMovieSearch(movies, searchRequest, filterState);
       saveSearchResult(searchResult);
+      setShowNotFoundResult(true)
       return;
     } 
   }, [])
@@ -416,6 +420,7 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
           isOnlySavedMovies={false}
           onMovieStatusClick={changeMovieStatus}
           onSearchSubmit={handleGeneralSearchSubmit}
+          showNotFoundResult={showNotFoundResult}
         />}
       />
       <Route 
@@ -431,6 +436,7 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
           isOnlySavedMovies={true}
           onMovieStatusClick={changeMovieStatus}
           onSearchSubmit={handleSavedSearchSubmit}
+          showNotFoundResult={showNotFoundResult}
         />}
       />
       <Route 
@@ -448,8 +454,8 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
           email={currentUser.email}
         />}
       />
-      <Route path="/signup" element={<Register onSubmit={handleRegisterSubmit}/>}></Route>
-      <Route path="/signin" element={<Login onSubmit={handleLoginSubmit}/>}></Route>
+      <Route path="/signup" element={<Register isLoggedIn={isLoggedIn} onSubmit={handleRegisterSubmit}/>}></Route>
+      <Route path="/signin" element={<Login isLoggedIn={isLoggedIn} onSubmit={handleLoginSubmit}/>}></Route>
       <Route path="*" element={<PageNotFound/>}></Route>
     </Routes>
     <Popup isPopupVisible={isPopupVisible} onClose={handleClosePopup} title={popupTitle} message={popupMessage}/>
