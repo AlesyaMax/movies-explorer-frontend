@@ -98,8 +98,8 @@ function App() {
         setPopupTitle(successMessages.registerTitle);
         setPopupMessage(successMessages.registerMessage);
         setIsPopupVisible(true);
-        navigate("/movies");
         setIsLoggedIn(true);
+        navigate("/movies");
       })
       .catch((err) => {
         console.log(err);
