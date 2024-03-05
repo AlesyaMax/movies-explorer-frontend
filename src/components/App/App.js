@@ -339,6 +339,7 @@ function handleGeneralSearchSubmit(searchRequest, filterState) {
         setPopupTitle(errorMessages.errorTitle);
         setPopupMessage(errorMessages.serverError);
         setIsPopupVisible(true);
+        setIsLoading(false);
       });
   }
 }
