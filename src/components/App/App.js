@@ -11,7 +11,7 @@ import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 import {CurrentUserContext} from '../../context/CurrentUserContext';
 import Popup from '../Popup/Popup';
-import {errorMessages, successMessages} from '../../utils/constants';
+import {errorMessages, successMessages, shortMovieDuration} from '../../utils/constants';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -304,7 +304,7 @@ function App() {
  };
 
  function searchShortMovies(data, searchRequest) {
-  const movies = data.filter((item) => item.duration < '41' && (item.nameRU.toLowerCase().includes(`${searchRequest}`) || item.nameEN.toLowerCase().includes(`${searchRequest}`))); 
+  const movies = data.filter((item) => item.duration < shortMovieDuration && (item.nameRU.toLowerCase().includes(`${searchRequest}`) || item.nameEN.toLowerCase().includes(`${searchRequest}`))); 
   return movies;
 }
 

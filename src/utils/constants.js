@@ -1,6 +1,6 @@
 export const moviesURL = "https://api.nomoreparties.co/beatfilm-movies";
-// export const baseURL = "https://api.movies-explorer.am.nomoredomainsmonster.ru"
-export const baseURL = "http://localhost:3006"
+export const baseURL = "https://api.movies-explorer.am.nomoredomainsmonster.ru"
+// export const baseURL = "http://localhost:3006"
 
 
 export const errorMessages = {
@@ -28,3 +28,21 @@ export const successMessages = {
 }
 
 export const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+
+export const windowWidth = {
+  laptop: 1279,
+  tablet: 767
+};
+
+export const numberOfCards = {
+  laptop: 12,
+  tablet: 8,
+  mobile: 5
+};
+
+export const additionalCards = {
+  laptop: 3,
+  tablet: 2
+}
+
+export const shortMovieDuration = 41;

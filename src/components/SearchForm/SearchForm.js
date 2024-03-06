@@ -63,8 +63,6 @@ function SearchForm(props) {
   }
 
   useEffect(() => {
-    console.log(isFilterOn)
-    console.log(localStorage.getItem("filterState"))
     const searchRequest = localStorage.getItem("searchRequest");
     const filterState = localStorage.getItem("filterState");
     if (searchRequest && searchRequest.length > 0) {
@@ -75,7 +73,7 @@ function SearchForm(props) {
 
   return (
     <form className='search-form' onSubmit={handleSubmit} noValidate>
-      <input className='search-form__input' type="text" placeholder='Фильм' required onChange={handleChange} value={props.isOnlySavedMovies ? searchSavedRequest : searchRequest}></input>
+      <input className='search-form__input' type="text" placeholder='Фильм' required onChange={handleChange} value={props.isOnlySavedMovies ? searchSavedRequest : searchRequest} disabled={props.isLoading}></input>
       <button className='search-form__button' type="submit"></button>
       <p className={`search-form__error ${hasErrors ? "search-form__error_visible" : ""}`}>Нужно ввести ключевое слово</p>
       <FilterCheckbox isFilterOn={isFilterOn} isFilterOnSaved={isFilterOnSaved} onFilterClick={handleGeneralFilterClick} onSavedFilterClick={handleSavedFilterClick} isOnlySavedMovies={props.isOnlySavedMovies}/>

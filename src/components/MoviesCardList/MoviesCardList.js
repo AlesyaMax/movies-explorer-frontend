@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
 import MoreButton from '../MoreButton/MoreButton';
 import MoviesCard from "../MoviesCard/MoviesCard";
+import {windowWidth, numberOfCards, additionalCards} from '../../utils/constants';
 
 function MoviesCardList(props) {
-  const moviesPath = "/movies";
-  const savedMoviesPath = "/saved-movies";
-
   function getInitialCardsAmount() {
-    if(window.innerWidth > 1279) {
-      return 12;
+    if(window.innerWidth > windowWidth.laptop) {
+      return numberOfCards.laptop;
     } else {
-      if(window.innerWidth > 767) {
-        return 8;
+      if(window.innerWidth > windowWidth.tablet) {
+        return numberOfCards.tablet;
       } else {
-        return 5;
+        return numberOfCards.mobile;
       }
     }
   }
@@ -28,11 +26,11 @@ function MoviesCardList(props) {
   }
 
   const handleMoreButtonClick = () => {
-    if(window.innerWidth > 1279) {
-      setCardsAmount(cardsAmount+3)
+    if(window.innerWidth > windowWidth.laptop) {
+      setCardsAmount(cardsAmount+additionalCards.laptop)
       setCards(props.cardsSet.slice(0, cardsAmount))
     } else {
-      setCardsAmount(cardsAmount+2)
+      setCardsAmount(cardsAmount+additionalCards.tablet)
       setCards(props.cardsSet.slice(0, cardsAmount))
     }
   }
@@ -50,17 +48,17 @@ function MoviesCardList(props) {
     setCards(props.cardsSet.slice(0, getInitialCardsAmount())); 
   }, [props.cardsSet])
 
-
   useEffect(() => {
-    if(window.location.pathname === moviesPath || window.location.pathname === savedMoviesPath) {
-      window.addEventListener("resize", resetCardsAmount);
-    } else {
-      window.removeEventListener("resize");
-    };
     if(props.cardsSet.length > 0) {
       setCards(props.cardsSet.slice(0, getInitialCardsAmount()));
     };
   }, [window.location.pathname])
+
+  useEffect(() => {
+    window.addEventListener("resize", resetCardsAmount);
+    return () =>  
+    window.removeEventListener("resize", resetCardsAmount);
+  }, [])
 
   return(
     <>
