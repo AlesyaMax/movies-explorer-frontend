@@ -29,6 +29,7 @@ function App() {
   const [popupMessage, setPopupMessage] = useState("");
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [showNotFoundResult, setShowNotFoundResult] = useState(false);
+  const [showNotFoundResultSaved, setShowNotFoundResultSaved] = useState(false);
 
 
   const navigate = useNavigate();
@@ -268,23 +269,27 @@ function App() {
 
  function handleRemoveMovie(movie) {
   const movieToRemove = savedMovies.filter((m) => m.movieId === movie.movieId);
-  mainApi
-    .removeMovie(movieToRemove[0]._id)
-    .then(() => {    
-      setSavedMovies((state) => state.filter((sm) => sm.movieId !== movie.movieId)); 
-      const savedMoviesSet = getStoredData("savedMovies");
-      const updatedSavedMoviesSet = savedMoviesSet.filter((sm) => sm.movieId !== movie.movieId);
-      storeData("savedMovies", updatedSavedMoviesSet); 
-      const updatedMoviesSet = checkIfSaved(getStoredData("movies"));
-      storeData("movies", updatedMoviesSet);
-      setFoundMovies((state) => state.map((m) => (m.movieId === movie.movieId ? movie : m)));
-    })
-    .catch((err) => {
-      console.log(err);
-      setPopupTitle(errorMessages.errorTitle);
-      setPopupMessage(errorMessages.serverError);
-      setIsPopupVisible(true);
-    });
+  if(movieToRemove && movieToRemove.length > 0) {
+    mainApi
+      .removeMovie(movieToRemove[0]._id)
+      .then(() => {    
+        setSavedMovies((state) => state.filter((sm) => sm.movieId !== movie.movieId)); 
+        const savedMoviesSet = getStoredData("savedMovies");
+        const updatedSavedMoviesSet = savedMoviesSet.filter((sm) => sm.movieId !== movie.movieId);
+        storeData("savedMovies", updatedSavedMoviesSet); 
+        const updatedMoviesSet = checkIfSaved(getStoredData("movies"));
+        storeData("movies", updatedMoviesSet);
+        setFoundMovies((state) => state.length > 0 ? state.map((m) => (m.movieId === movie.movieId ? movie : m)) : state);
+      })
+      .catch((err) => {
+        console.log(err);
+        setPopupTitle(errorMessages.errorTitle);
+        setPopupMessage(errorMessages.serverError);
+        setIsPopupVisible(true);
+      });
+  } else {
+    return;
+  }
  }
 
  function changeMovieStatus(movie, isSaved) {
@@ -312,6 +317,7 @@ function saveSearchResult(movies) {
     setHasMoviesToShow(true)
   } else {
     setHasMoviesToShow(false)
+    setShowNotFoundResult(true)
   }
 };
 
@@ -358,18 +364,33 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
     const searchResult = handleMovieSearch(movies, searchRequest, filterState);
     if(searchResult.length > 0) {
       setSavedMovies(searchResult);
-      setHasSavedMoviesToShow(true)
+      setHasSavedMoviesToShow(true);
+      setShowNotFoundResultSaved(false);
     } else {
-      setHasSavedMoviesToShow(false)
+      setHasSavedMoviesToShow(false);
+      setShowNotFoundResultSaved(true);
     }
   } else {
-    setHasSavedMoviesToShow(false)
+    setHasSavedMoviesToShow(false);
+    setShowNotFoundResultSaved(true);
   }
   setIsLoading(false);
 }
 
+function checkCurrentSavedMovies() {
+  const currentSavedMovies = getStoredData("savedMovies");
+  if(currentSavedMovies && currentSavedMovies.length > 0) {
+    setHasSavedMoviesToShow(true);
+    setSavedMovies(currentSavedMovies)
+  } else {
+    setHasSavedMoviesToShow(false);
+  }
+}
+
   useEffect(() => {
     setIsMenuOpened(false);
+    setShowNotFoundResultSaved(false);
+    checkCurrentSavedMovies();
   }, [currentPath]);
 
   useEffect(() => {
@@ -447,7 +468,7 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
           isOnlySavedMovies={true}
           onMovieStatusClick={changeMovieStatus}
           onSearchSubmit={handleSavedSearchSubmit}
-          showNotFoundResult={showNotFoundResult}
+          showNotFoundResult={showNotFoundResultSaved}
           />}
       />
       <Route 

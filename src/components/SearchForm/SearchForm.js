@@ -23,14 +23,18 @@ function SearchForm(props) {
     } else {
       setHasErrors(false);
       props.onSearchSubmit(request, filterState);
-      localStorage.setItem(`${key}`, request);
+      if(key) {
+        localStorage.setItem(`${key}`, request);
+      } else {
+        return;
+      }
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if(props.isOnlySavedMovies) {
-      handleSearch(searchSavedRequest, isFilterOnSaved, "searchSavedRequest");
+      handleSearch(searchSavedRequest, isFilterOnSaved);
     } else {
       handleSearch(searchRequest, isFilterOn, "searchRequest");
     }
@@ -51,12 +55,10 @@ function SearchForm(props) {
   const handleSavedFilterClick = () => {
     if(isFilterOnSaved) {
       setIsFilterOnSaved(false)
-      localStorage.setItem("filterSavedState", false);
-      handleSearch(searchSavedRequest, false, "searchSavedRequest");
+      handleSearch(searchSavedRequest, false);
     } else {
       setIsFilterOnSaved(true)
-      localStorage.setItem("filterSavedState", true);
-      handleSearch(searchSavedRequest, true, "searchSavedRequest");
+      handleSearch(searchSavedRequest, true);
     };
   }
 
@@ -66,15 +68,6 @@ function SearchForm(props) {
     if (searchRequest && searchRequest.length > 0) {
       setSearchRequest(searchRequest)
       setIsFilterOn(isFilterOn);
-    }
-  }, [])
-
-  useEffect(() => {
-    const searchSavedRequest = localStorage.getItem("searchSavedRequest");
-    const isFilterOnSaved = localStorage.getItem("filterSavedState");
-    if (searchSavedRequest && searchSavedRequest.length > 0) {
-      setSearchSavedRequest(searchSavedRequest)
-      setIsFilterOnSaved(isFilterOnSaved);
     }
   }, [])
 
