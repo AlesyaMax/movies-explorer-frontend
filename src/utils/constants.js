@@ -1,5 +1,7 @@
 export const moviesURL = "https://api.nomoreparties.co/beatfilm-movies";
-export const baseURL = "https://api.movies-explorer.am.nomoredomainsmonster.ru"
+// export const baseURL = "https://api.movies-explorer.am.nomoredomainsmonster.ru"
+export const baseURL = "http://localhost:3006"
+
 
 export const errorMessages = {
   wrongType: "Введен неверный формат данных",
@@ -24,3 +26,5 @@ export const successMessages = {
   updateTitle: "Успешно",
   updateMessage: "Данные профиля изменены."
 }
+
+export const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;

@@ -5,6 +5,7 @@ import FormButton from '../FormButton/FormButton';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {EMAIL_REGEXP} from '../../utils/constants';
 
 function Login(props) {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Login(props) {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const checkValidity = (e) => {
-    if(formValue.email === "" || formValue.password === "" || !e.target.validity.valid) {
+    if(formValue.email === "" || formValue.password === "" || !e.target.validity.valid || !EMAIL_REGEXP.test(formValue.email.toLowerCase())) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
@@ -49,7 +50,8 @@ function Login(props) {
         withLogo={true} 
         additionalContainerClass=""
         title="Рады видеть!"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+        onLogoClick={props.onLogoClick}>
         <InputElement 
           inputElementClass=""
           additionalLabelClass=""

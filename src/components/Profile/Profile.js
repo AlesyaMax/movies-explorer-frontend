@@ -7,6 +7,8 @@ import FormButton from '../FormButton/FormButton';
 import Paragraph from '../Paragraph/Paragraph';
 import { useState, useContext, useEffect } from 'react';
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+import {EMAIL_REGEXP} from '../../utils/constants';
+
 
 
 function Profile(props) {
@@ -35,7 +37,7 @@ function Profile(props) {
 
   function handleChangeEmail(evt) {
     setEmail(evt.target.value)
-    if(!evt.target.validity.valid) {
+    if(!evt.target.validity.valid || !EMAIL_REGEXP.test(evt.target.value.toLowerCase())) {
       setIsDisabled(true);
     } else {
       if(evt.target.value === currentUser.email) {

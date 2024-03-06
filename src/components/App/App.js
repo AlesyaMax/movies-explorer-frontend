@@ -69,6 +69,7 @@ function App() {
 
   function handleProfileSubmit(userInfo) {
     switchEditingMode();
+    setIsLoading(true);
     mainApi
       .editUserInfo(userInfo)
       .then((newUserInfo) => {
@@ -86,10 +87,12 @@ function App() {
         } else {
           setPopupMessage(errorMessages.serverError);
         }
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleRegisterSubmit(data) {
+    setIsLoading(true);
     mainApi
       .register(data)
       .then((res) => {
@@ -110,10 +113,12 @@ function App() {
         } else {
           setPopupMessage(errorMessages.serverError);
         }
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleLoginSubmit(data) {
+    setIsLoading(true);
     mainApi
       .authorization(data)
       .then((res) => {
@@ -142,7 +147,8 @@ function App() {
           default:
             setPopupMessage(errorMessages.serverError);
         }
-      });
+      })
+      .finally(() => setIsLoading(false));
   } 
 
   function storeData(key, data) {
@@ -158,6 +164,7 @@ function App() {
     mainApi.signOut()
     .then(() => {
       localStorage.clear();
+      setIsLoggedIn(false);
       navigate("/", {replace: true})
     })
     .catch((err) => {
@@ -333,14 +340,14 @@ function handleGeneralSearchSubmit(searchRequest, filterState) {
         storeData("movies", checkedMoviesSet)
         const searchResult = handleMovieSearch(checkedMoviesSet, searchRequest, filterState);
         saveSearchResult(searchResult);
-        setIsLoading(false)})
+      })
       .catch((err) => {
         console.log(err);
         setPopupTitle(errorMessages.errorTitle);
         setPopupMessage(errorMessages.serverError);
         setIsPopupVisible(true);
-        setIsLoading(false);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 }
 
@@ -446,21 +453,38 @@ function handleSavedSearchSubmit(searchRequest, filterState) {
       <Route 
         path="/profile" 
         element={<ProtectedRouteElement
-        isLoggedIn={setIsLoggedIn}
-        element={Profile}
-        isMenuOpened={isMenuOpened} 
-        onMenuClick={handleClickOnMenu} 
-        onLogoClick={handleLogoClick}
-        isInEditingMode={isInEditingMode}
-        onEditProfile={switchEditingMode}
-        onSubmit={handleProfileSubmit}
-        onSignOut={handleSignOut}
-        name={currentUser.name}
-        email={currentUser.email}
+          isLoggedIn={isLoggedIn}
+          element={Profile}
+          isMenuOpened={isMenuOpened} 
+          onMenuClick={handleClickOnMenu} 
+          onLogoClick={handleLogoClick}
+          isInEditingMode={isInEditingMode}
+          onEditProfile={switchEditingMode}
+          onSubmit={handleProfileSubmit}
+          onSignOut={handleSignOut}
+          name={currentUser.name}
+          email={currentUser.email}
+          isLoading={isLoading}
         />}
       />
-      <Route path="/signup" element={<Register isLoggedIn={isLoggedIn} onSubmit={handleRegisterSubmit}/>}></Route>
-      <Route path="/signin" element={<Login isLoggedIn={isLoggedIn} onSubmit={handleLoginSubmit}/>}></Route>
+      <Route 
+        path="/signup" 
+        element={<Register 
+          isLoggedIn={isLoggedIn} 
+          onSubmit={handleRegisterSubmit}
+          onLogoClick={handleLogoClick}
+          isLoading={isLoading}
+        />}
+      />
+      <Route 
+        path="/signin" 
+        element={<Login 
+          isLoggedIn={isLoggedIn} 
+          onSubmit={handleLoginSubmit}
+          onLogoClick={handleLogoClick}
+          isLoading={isLoading}
+        />}
+      />
       <Route path="*" element={<PageNotFound/>}></Route>
     </Routes>
     <Popup isPopupVisible={isPopupVisible} onClose={handleClosePopup} title={popupTitle} message={popupMessage}/>

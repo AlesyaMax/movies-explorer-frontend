@@ -4,6 +4,7 @@ import FormLink from '../FormLink/FormLink';
 import FormButton from '../FormButton/FormButton';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {EMAIL_REGEXP} from '../../utils/constants';
 
 function Register(props) {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Register(props) {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const checkValidity = (e) => {
-    if(formValue.name === "" || formValue.email === "" || formValue.password === "" || !e.target.validity.valid) {
+    if(formValue.name === "" || formValue.email === "" || formValue.password === "" || !e.target.validity.valid || !EMAIL_REGEXP.test(formValue.email.toLowerCase())) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
@@ -48,7 +49,8 @@ function Register(props) {
       <Form withLogo={true} 
       additionalContainerClass=""
       title="Добро пожаловать!"
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      onLogoClick={props.onLogoClick}>
         <InputElement 
           inputElementClass=""
           additionalLabelClass=""
@@ -62,6 +64,7 @@ function Register(props) {
           placeholder="Введите имя" 
           errorMessage="" 
           onChange={handleChange}
+          isLoading={props.isLoading}
         />
         
         <InputElement
@@ -74,6 +77,7 @@ function Register(props) {
           name="email"
           placeholder="Введите e-mail" 
           onChange={handleChange}
+          isLoading={props.isLoading}
         />
         
         <InputElement 
@@ -89,8 +93,9 @@ function Register(props) {
           placeholder="Введите пароль" 
           hasSecretValue={true} 
           onChange={handleChange}
+          isLoading={props.isLoading}
         />
-        <FormButton buttonText="Зарегистрироваться" type="submit" isDisabled={isDisabled}/>
+        <FormButton buttonText="Зарегистрироваться" type="submit" isDisabled={isDisabled && props.isLoading}/>
         <FormLink address="/signin" linkText="Уже зарегистрированы?" linkButton="Войти"/>
       </Form>
     </main>
