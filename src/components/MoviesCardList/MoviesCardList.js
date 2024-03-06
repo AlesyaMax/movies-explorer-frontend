@@ -18,8 +18,6 @@ function MoviesCardList(props) {
     }
   }
 
-  const initialCardsAmount = getInitialCardsAmount();
-
   const [cards, setCards] = useState(props.cardsSet);
   const [cardsAmount, setCardsAmount] = useState(getInitialCardsAmount());
   const [moreMovies, setMoreMovies] = useState(true);
@@ -31,16 +29,11 @@ function MoviesCardList(props) {
 
   const handleMoreButtonClick = () => {
     if(window.innerWidth > 1279) {
-      setCardsAmount(cardsAmount+12)
+      setCardsAmount(cardsAmount+3)
       setCards(props.cardsSet.slice(0, cardsAmount))
     } else {
-      if(window.innerWidth > 767) {
-        setCardsAmount(cardsAmount+8)
-        setCards(props.cardsSet.slice(0, cardsAmount))
-      } else {
-        setCardsAmount(cardsAmount+2)
-        setCards(props.cardsSet.slice(0, cardsAmount))
-      }
+      setCardsAmount(cardsAmount+2)
+      setCards(props.cardsSet.slice(0, cardsAmount))
     }
   }
 
@@ -54,7 +47,7 @@ function MoviesCardList(props) {
   }, [cardsAmount, props.cardsSet])
 
   useEffect(() => {
-    setCards(props.cardsSet.slice(0, cardsAmount)); 
+    setCards(props.cardsSet.slice(0, getInitialCardsAmount())); 
   }, [props.cardsSet])
 
 
@@ -69,10 +62,6 @@ function MoviesCardList(props) {
     };
   }, [window.location.pathname])
 
-  useEffect(() => {
-    console.log("hi")
-  }, [])
-
   return(
     <>
       {props.isOnlySavedMovies 
@@ -81,8 +70,7 @@ function MoviesCardList(props) {
         : (<ul className='movies-container'>{cards.map((card) => (<MoviesCard key={card.id} movieData={card} isOnlySavedMovies={props.isOnlySavedMovies} onMovieStatusClick={props.onMovieStatusClick}/>))}
         </ul>)
       }
-      {props.isOnlySavedMovies ? "" : (<MoreButton/>)}
-      {/* {props.isOnlySavedMovies ? "" : (moreMovies && <MoreButton onMoreButtonClick={handleMoreButtonClick}/>)} */}
+      {props.isOnlySavedMovies ? "" : (moreMovies && <MoreButton onMoreButtonClick={handleMoreButtonClick}/>)}
     </>
   )
 }

@@ -63,11 +63,13 @@ function SearchForm(props) {
   }
 
   useEffect(() => {
+    console.log(isFilterOn)
+    console.log(localStorage.getItem("filterState"))
     const searchRequest = localStorage.getItem("searchRequest");
-    const isFilterOn = localStorage.getItem("filterState");
+    const filterState = localStorage.getItem("filterState");
     if (searchRequest && searchRequest.length > 0) {
       setSearchRequest(searchRequest)
-      setIsFilterOn(isFilterOn);
+      setIsFilterOn(filterState);
     }
   }, [])
 
