@@ -254,7 +254,10 @@ function App() {
     mainApi
       .saveMovie(movie)
       .then((newMovie) => {
-        getSavedMovies();
+        const savedMoviesList = getStoredData("savedMovies");
+        savedMoviesList.push(newMovie);
+        storeData("savedMovies", savedMoviesList);
+        setSavedMovies(savedMoviesList);
         const updatedMoviesSet = checkIfSaved(getStoredData("movies"));
         storeData("movies", updatedMoviesSet);
         setFoundMovies((state) => state.map((m) => (m.movieId === newMovie.movieId ? newMovie : m)));
