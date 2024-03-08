@@ -42,11 +42,11 @@ function SearchForm(props) {
     if(isFilterOn) {
       setIsFilterOn(false)
       localStorage.setItem("filterState", false);
-      handleSearch(searchRequest, false, "searchRequest");
+      handleSearch(searchRequest.toLowerCase(), false, "searchRequest");
     } else {
       setIsFilterOn(true)
       localStorage.setItem("filterState", true);
-      handleSearch(searchRequest, true, "searchRequest");
+      handleSearch(searchRequest.toLowerCase(), true, "searchRequest");
     };
   }
 
