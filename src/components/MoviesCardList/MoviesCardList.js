@@ -4,7 +4,20 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import {WINDOW_WIDTH, NUMBER_OF_CARDS, ADDITIONAL_CARDS} from '../../utils/constants';
 
 function MoviesCardList(props) {
-  const [device, setDevice] = useState("");
+
+  const initialDevice = () => {
+    if(window.innerWidth > WINDOW_WIDTH.LAPTOP) {
+      return 'laptop';
+    } else {
+      if(window.innerWidth > WINDOW_WIDTH.TABLET) {
+        return 'tablet';
+      } else {
+        return 'mobile';
+      }
+    }
+  }
+
+  const [device, setDevice] = useState(initialDevice());
 
   function identifyDevice() {
     if(window.innerWidth > WINDOW_WIDTH.LAPTOP) {

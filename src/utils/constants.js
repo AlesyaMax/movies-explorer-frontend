@@ -1,6 +1,6 @@
 export const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
-export const BASE_URL = "https://api.movies-explorer.am.nomoredomainsmonster.ru"
-// export const BASE_URL= "http://localhost:3006"
+// export const BASE_URL = "https://api.movies-explorer.am.nomoredomainsmonster.ru"
+export const BASE_URL= "http://localhost:3006"
 
 export const ERROR_MESSAGES = {
   WRONG_TYPE: "Введен неверный формат данных",
