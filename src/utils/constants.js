@@ -1,6 +1,6 @@
 export const moviesURL = "https://api.nomoreparties.co/beatfilm-movies";
-export const baseURL = "https://api.movies-explorer.am.nomoredomainsmonster.ru"
-// export const baseURL = "http://localhost:3006"
+// export const baseURL = "https://api.movies-explorer.am.nomoredomainsmonster.ru"
+export const baseURL = "http://localhost:3006"
 
 
 export const errorMessages = {
@@ -15,7 +15,8 @@ export const errorMessages = {
   updateError: "При обновлении профиля произошла ошибка.",
   serverError: "На сервере произошла ошибка",
   pageNotFoundError: "Страница по указанному маршруту не найдена.",
-  errorTitle: "Ошибка"
+  errorTitle: "Ошибка",
+  sameData: "Новые данные профиля совпадают со старыми данными"
 };
 
 export const successMessages = {

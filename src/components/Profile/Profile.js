@@ -7,7 +7,7 @@ import FormButton from '../FormButton/FormButton';
 import Paragraph from '../Paragraph/Paragraph';
 import { useState, useContext, useEffect } from 'react';
 import { CurrentUserContext } from "../../context/CurrentUserContext";
-import {EMAIL_REGEXP} from '../../utils/constants';
+import {EMAIL_REGEXP, errorMessages} from '../../utils/constants';
 
 
 
@@ -15,7 +15,8 @@ function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");  
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [hasErrors, setHasErrors] = useState(false)
 
   useEffect(() => {
     setName(currentUser.name);
@@ -23,34 +24,40 @@ function Profile(props) {
   }, [currentUser]);
   
   function handleChangeName(evt) {
+    setHasErrors(false);
     setName(evt.target.value);
     if(!evt.target.validity.valid) {
-      setIsDisabled(true);
+      setIsButtonDisabled(true);
     } else {
-      if(evt.target.value === currentUser.name) {
-        setIsDisabled(true);
+      if(evt.target.value === currentUser.name && email === currentUser.email) {
+        setIsButtonDisabled(true);
+        setHasErrors(true);
       } else {
-        setIsDisabled(false);
+        setIsButtonDisabled(false);
+        setHasErrors(false);
       };
-    }
+    };
   }
 
   function handleChangeEmail(evt) {
+    setHasErrors(false);
     setEmail(evt.target.value)
     if(!evt.target.validity.valid || !EMAIL_REGEXP.test(evt.target.value.toLowerCase())) {
-      setIsDisabled(true);
+      setIsButtonDisabled(true);
     } else {
-      if(evt.target.value === currentUser.email) {
-        setIsDisabled(true);
+      if(evt.target.value === currentUser.email && name === currentUser.name) {
+        setIsButtonDisabled(true);
+        setHasErrors(true);
       } else {
-        setIsDisabled(false);
+        setIsButtonDisabled(false);
+        setHasErrors(false);
       };
-    }
+    };
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    setIsDisabled(true)
+    setIsButtonDisabled(true);
     props.onSubmit({
       name,
       email,
@@ -80,6 +87,7 @@ function Profile(props) {
           value={name}
           isDisabled={props.isInEditingMode ? false : true}
           onChange={handleChangeName}
+          isLoading={props.isLoading}
         />
         <InputElement 
           inputElementClass="profile__input-element" 
@@ -93,11 +101,12 @@ function Profile(props) {
           value={email}
           isDisabled={props.isInEditingMode ? false : true}
           onChange={handleChangeEmail}
+          isLoading={props.isLoading}
         />
         {props.isInEditingMode 
           ? (<>
-            <ErrorMessage hasErrors={false} errorMessage="При обновлении профиля произошла ошибка." additionalErrorClass="profile__error-message"/>
-            <FormButton isDisabled={isDisabled} buttonText="Сохранить" additionalButtonClass="profile__button_save" type="submit"/>
+            <ErrorMessage hasErrors={hasErrors} errorMessage={errorMessages.sameData} additionalErrorClass="profile__error-message"/>
+            <FormButton isDisabled={props.isLoading ? true : isButtonDisabled} buttonText="Сохранить" additionalButtonClass="profile__button_save" type="submit"/>
             </>)
           : (<>
             <Paragraph additionalClass="profile__edit" text="Редактировать" onClickFunction={props.onEditProfile}/>

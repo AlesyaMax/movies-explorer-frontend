@@ -39,7 +39,7 @@ function InputElement(props) {
       maxLength={props.maxLength}
       placeholder={props.placeholder} 
       required 
-      disabled={props.isDisabled && props.isLoading}
+      disabled={props.isLoading ? true : props.isDisabled}
       onChange={handleChange}
       value={props.value}
       ></input>

@@ -69,8 +69,8 @@ function App() {
   }
 
   function handleProfileSubmit(userInfo) {
-    switchEditingMode();
     setIsLoading(true);
+    switchEditingMode();
     mainApi
       .editUserInfo(userInfo)
       .then((newUserInfo) => {

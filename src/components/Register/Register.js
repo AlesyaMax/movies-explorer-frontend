@@ -17,10 +17,14 @@ function Register(props) {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const checkValidity = (e) => {
-    if(formValue.name === "" || formValue.email === "" || formValue.password === "" || !e.target.validity.valid || !EMAIL_REGEXP.test(formValue.email.toLowerCase())) {
+    if(e.target.type === 'email' && !EMAIL_REGEXP.test(e.target.value.toLowerCase())) {
       setIsDisabled(true);
     } else {
-      setIsDisabled(false);
+      if(formValue.name === "" || formValue.email === "" || formValue.password === "" || !e.target.validity.valid) {
+        setIsDisabled(true);
+      } else {
+        setIsDisabled(false);
+      }
     }
   }
 
@@ -95,7 +99,7 @@ function Register(props) {
           onChange={handleChange}
           isLoading={props.isLoading}
         />
-        <FormButton buttonText="Зарегистрироваться" type="submit" isDisabled={isDisabled && props.isLoading}/>
+        <FormButton buttonText="Зарегистрироваться" type="submit" isDisabled={props.isLoading ? true : isDisabled}/>
         <FormLink address="/signin" linkText="Уже зарегистрированы?" linkButton="Войти"/>
       </Form>
     </main>

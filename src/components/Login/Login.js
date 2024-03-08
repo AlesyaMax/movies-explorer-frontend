@@ -17,10 +17,14 @@ function Login(props) {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const checkValidity = (e) => {
-    if(formValue.email === "" || formValue.password === "" || !e.target.validity.valid || !EMAIL_REGEXP.test(formValue.email.toLowerCase())) {
+    if(e.target.type === 'email' && !EMAIL_REGEXP.test(e.target.value.toLowerCase())) {
       setIsDisabled(true);
     } else {
-      setIsDisabled(false);
+      if(formValue.email === "" || formValue.password === "" || !e.target.validity.valid) {
+        setIsDisabled(true);
+      } else {
+        setIsDisabled(false);
+      }
     }
   }
 
@@ -62,6 +66,7 @@ function Login(props) {
           name="email"
           placeholder="Введите e-mail"
           onChange={handleChange}
+          isLoading={props.isLoading}
         />
         <InputElement 
           inputElementClass=""
@@ -76,9 +81,9 @@ function Login(props) {
           placeholder="Введите пароль" 
           hasSecretValue={true}
           onChange={handleChange}
+          isLoading={props.isLoading}
         />
-        <ErrorMessage errorMessage="Вы ввели неправильный логин или пароль."/>
-        <FormButton buttonText="Войти" additionalButtonClass="button_login" type="submit" isDisabled={isDisabled}/>
+        <FormButton buttonText="Войти" additionalButtonClass="button_login" type="submit" isDisabled={props.isLoading ? true : isDisabled}/>
         <FormLink address="/signup" linkText="Ещё не зарегистрированы?" linkButton="Регистрация"/>
       </Form>
     </main>
