@@ -4,6 +4,20 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import {windowWidth, numberOfCards, additionalCards} from '../../utils/constants';
 
 function MoviesCardList(props) {
+  const [device, setDevice] = useState("");
+
+  function identifyDevice() {
+    if(window.innerWidth > windowWidth.laptop) {
+      setDevice('laptop');
+    } else {
+      if(window.innerWidth > windowWidth.tablet) {
+        setDevice('tablet');
+      } else {
+        setDevice('mobile');
+      }
+    }
+  }
+
   function getInitialCardsAmount() {
     if(window.innerWidth > windowWidth.laptop) {
       return numberOfCards.laptop;
@@ -45,7 +59,8 @@ function MoviesCardList(props) {
   }, [cardsAmount, props.cardsSet])
 
   useEffect(() => {
-    setCards(props.cardsSet.slice(0, getInitialCardsAmount())); 
+    setCards(props.cardsSet.slice(0, getInitialCardsAmount()));
+    setCardsAmount(getInitialCardsAmount()) 
   }, [props.cardsSet])
 
   useEffect(() => {
@@ -55,10 +70,14 @@ function MoviesCardList(props) {
   }, [window.location.pathname])
 
   useEffect(() => {
-    window.addEventListener("resize", resetCardsAmount);
+    window.addEventListener("resize", identifyDevice);
     return () =>  
-    window.removeEventListener("resize", resetCardsAmount);
+    window.removeEventListener("resize", identifyDevice);
   }, [])
+
+  useEffect(() => {
+    resetCardsAmount();
+  }, [device])
 
   return(
     <>

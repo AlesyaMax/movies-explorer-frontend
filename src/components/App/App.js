@@ -160,6 +160,12 @@ function App() {
     return JSON.parse(localStorage.getItem(key));
   }
 
+  function updateStoredMovies(newDataSet, newOwner, newMovieId) {
+    const allMovies = getStoredData("movies");
+    allMovies.map((m) => (m.movieId === newDataSet.movieId ? (m.owner = newOwner, m._id = newMovieId) : m));
+    storeData("movies", allMovies);
+  }
+
   function handleSignOut() {
     navigate("/signout", {replace: true});
     mainApi.signOut()
@@ -258,10 +264,9 @@ function App() {
         savedMoviesList.push(newMovie);
         storeData("savedMovies", savedMoviesList);
         setSavedMovies(savedMoviesList);
-        const updatedMoviesSet = checkIfSaved(getStoredData("movies"));
-        storeData("movies", updatedMoviesSet);
-        setFoundMovies((state) => state.map((m) => (m.movieId === newMovie.movieId ? newMovie : m)));
-        })
+        movie.owner = newMovie.owner;
+        movie._id = newMovie._id;
+        updateStoredMovies(newMovie, newMovie.owner, newMovie._id)})
       .catch((err) => {
         console.log(err);
         setPopupTitle(errorMessages.errorTitle);
@@ -280,18 +285,15 @@ function App() {
         const savedMoviesSet = getStoredData("savedMovies");
         const updatedSavedMoviesSet = savedMoviesSet.filter((sm) => sm.movieId !== movie.movieId);
         storeData("savedMovies", updatedSavedMoviesSet); 
-        const updatedMoviesSet = checkIfSaved(getStoredData("movies"));
-        storeData("movies", updatedMoviesSet);
-        setFoundMovies((state) => state.length > 0 ? state.map((m) => (m.movieId === movie.movieId ? movie : m)) : state);
-      })
+        movie.owner = "";
+        movie._id = "";
+        updateStoredMovies(movie, "", "")})
       .catch((err) => {
         console.log(err);
         setPopupTitle(errorMessages.errorTitle);
         setPopupMessage(errorMessages.serverError);
         setIsPopupVisible(true);
       });
-  } else {
-    return;
   }
  }
 
@@ -414,7 +416,7 @@ function checkCurrentSavedMovies() {
         .getUserInfo()
         .then((userData) => {
           setCurrentUser(userData);
-          getSavedMovies()
+          getSavedMovies();
         })
         .catch((err) => {
           console.log(err);
