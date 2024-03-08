@@ -7,7 +7,7 @@ import FormButton from '../FormButton/FormButton';
 import Paragraph from '../Paragraph/Paragraph';
 import { useState, useContext, useEffect } from 'react';
 import { CurrentUserContext } from "../../context/CurrentUserContext";
-import {EMAIL_REGEXP, errorMessages} from '../../utils/constants';
+import {EMAIL_REGEXP, ERROR_MESSAGES} from '../../utils/constants';
 
 
 
@@ -105,7 +105,7 @@ function Profile(props) {
         />
         {props.isInEditingMode 
           ? (<>
-            <ErrorMessage hasErrors={hasErrors} errorMessage={errorMessages.sameData} additionalErrorClass="profile__error-message"/>
+            <ErrorMessage hasErrors={hasErrors} errorMessage={ERROR_MESSAGES.SAME_DATA} additionalErrorClass="profile__error-message"/>
             <FormButton isDisabled={props.isLoading ? true : isButtonDisabled} buttonText="Сохранить" additionalButtonClass="profile__button_save" type="submit"/>
             </>)
           : (<>

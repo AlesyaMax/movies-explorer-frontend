@@ -11,7 +11,7 @@ import moviesApi from "../../utils/MoviesApi";
 import mainApi from '../../utils/MainApi';
 import {CurrentUserContext} from '../../context/CurrentUserContext';
 import Popup from '../Popup/Popup';
-import {errorMessages, successMessages, shortMovieDuration} from '../../utils/constants';
+import {ERROR_MESSAGES, SUCCESS_MESSAGES, SHORT_MOVIES_DURATION} from '../../utils/constants';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -75,18 +75,18 @@ function App() {
       .editUserInfo(userInfo)
       .then((newUserInfo) => {
         setCurrentUser(newUserInfo);
-        setPopupTitle(successMessages.updateTitle);
-        setPopupMessage(successMessages.updateMessage);
+        setPopupTitle(SUCCESS_MESSAGES.UPDATE_TITLE);
+        setPopupMessage(SUCCESS_MESSAGES.UPDATE_MESSAGE);
         setIsPopupVisible(true);
       })
       .catch((err) => {
         console.log(err);
-        setPopupTitle(errorMessages.errorTitle);
+        setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
         setIsPopupVisible(true);
         if(err.status === 409) {
-          setPopupMessage(errorMessages.duplicateError);
+          setPopupMessage(ERROR_MESSAGES.DUPLICATE_ERROR);
         } else {
-          setPopupMessage(errorMessages.serverError);
+          setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
         }
       })
       .finally(() => setIsLoading(false));
@@ -99,20 +99,20 @@ function App() {
       .then((res) => {
         localStorage.setItem("userId", res._id);
         setCurrentUser(res);
-        setPopupTitle(successMessages.registerTitle);
-        setPopupMessage(successMessages.registerMessage);
+        setPopupTitle(SUCCESS_MESSAGES.REGISTER_TITLE);
+        setPopupMessage(SUCCESS_MESSAGES.REGISTER_MESSAGE);
         setIsPopupVisible(true);
         setIsLoggedIn(true);
         navigate("/movies");
       })
       .catch((err) => {
         console.log(err);
-        setPopupTitle(errorMessages.errorTitle);
+        setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
         setIsPopupVisible(true);
         if(err.status === 409) {
-          setPopupMessage(errorMessages.duplicateError);
+          setPopupMessage(ERROR_MESSAGES.DUPLICATE_ERROR);
         } else {
-          setPopupMessage(errorMessages.serverError);
+          setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
         }
       })
       .finally(() => setIsLoading(false));
@@ -126,27 +126,27 @@ function App() {
         localStorage.setItem("userId", res._id);
         setIsLoggedIn(true);
         setCurrentUser(data);
-        setPopupTitle(successMessages.loginTitle);
-        setPopupMessage(successMessages.loginMessage);
+        setPopupTitle(SUCCESS_MESSAGES.LOGIN_TITLE);
+        setPopupMessage(SUCCESS_MESSAGES.LOGIN_MESSAGE);
         setIsPopupVisible(true);
         navigate("/movies");
       })
       .catch((err) => {
         console.log(err);
-        setPopupTitle(errorMessages.errorTitle);
+        setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
         setIsPopupVisible(true);
         switch(err.status) {
           case 400: 
-            setPopupMessage(errorMessages.authError);
+            setPopupMessage(ERROR_MESSAGES.AUTH_ERROR);
             break;
           case 401:
-            setPopupMessage(errorMessages.wrongLogin);
+            setPopupMessage(ERROR_MESSAGES.WRONG_LOGIN);
             break;
           case 403:
-            setPopupMessage(errorMessages.wrongToken);
+            setPopupMessage(ERROR_MESSAGES.WRONG_TOKEN);
             break;
           default:
-            setPopupMessage(errorMessages.serverError);
+            setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
         }
       })
       .finally(() => setIsLoading(false));
@@ -176,8 +176,8 @@ function App() {
     })
     .catch((err) => {
       console.log(err)
-      setPopupTitle(errorMessages.errorTitle);
-      setPopupMessage(errorMessages.serverError);
+      setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
+      setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
       setIsPopupVisible(true);
     });
   }
@@ -193,17 +193,17 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
-          setPopupTitle(errorMessages.errorTitle);
+          setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
           setIsPopupVisible(true);
           switch(err.status) {
             case 401:
-              setPopupMessage(errorMessages.wrongToken);
+              setPopupMessage(ERROR_MESSAGES.WRONG_TOKEN);
               break;
             case 403: 
-              setPopupMessage(errorMessages.authError);
+              setPopupMessage(ERROR_MESSAGES.AUTH_ERROR);
               break;
             default:
-              setPopupMessage(errorMessages.serverError);
+              setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
           }
         });
     }
@@ -249,8 +249,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        setPopupTitle(errorMessages.errorTitle);
-        setPopupMessage(errorMessages.serverError);
+        setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
+        setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
         setIsPopupVisible(true);
       })
   }
@@ -269,8 +269,8 @@ function App() {
         updateStoredMovies(newMovie, newMovie.owner, newMovie._id)})
       .catch((err) => {
         console.log(err);
-        setPopupTitle(errorMessages.errorTitle);
-        setPopupMessage(errorMessages.serverError);
+        setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
+        setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
         setIsPopupVisible(true);
       });
  }
@@ -290,8 +290,8 @@ function App() {
         updateStoredMovies(movie, "", "")})
       .catch((err) => {
         console.log(err);
-        setPopupTitle(errorMessages.errorTitle);
-        setPopupMessage(errorMessages.serverError);
+        setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
+        setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
         setIsPopupVisible(true);
       });
   }
@@ -306,7 +306,7 @@ function App() {
  };
 
  function searchShortMovies(data, searchRequest) {
-  const movies = data.filter((item) => item.duration < shortMovieDuration && (item.nameRU.toLowerCase().includes(`${searchRequest}`) || item.nameEN.toLowerCase().includes(`${searchRequest}`))); 
+  const movies = data.filter((item) => item.duration < SHORT_MOVIES_DURATION && (item.nameRU.toLowerCase().includes(`${searchRequest}`) || item.nameEN.toLowerCase().includes(`${searchRequest}`))); 
   return movies;
 }
 
@@ -354,8 +354,8 @@ function handleGeneralSearchSubmit(searchRequest, filterState) {
       })
       .catch((err) => {
         console.log(err);
-        setPopupTitle(errorMessages.errorTitle);
-        setPopupMessage(errorMessages.serverError);
+        setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
+        setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
         setIsPopupVisible(true);
       })
       .finally(() => setIsLoading(false));
@@ -420,8 +420,8 @@ function checkCurrentSavedMovies() {
         })
         .catch((err) => {
           console.log(err);
-          setPopupTitle(errorMessages.errorTitle);
-          setPopupMessage(errorMessages.serverError);
+          setPopupTitle(ERROR_MESSAGES.ERROR_TITLE);
+          setPopupMessage(ERROR_MESSAGES.SERVER_ERROR);
           setIsPopupVisible(true);
         });
     }
