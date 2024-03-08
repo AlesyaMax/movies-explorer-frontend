@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import {identifyError} from '../../utils/input-validation';
-import {EMAIL_REGEXP, errorMessages} from '../../utils/constants';
+import {EMAIL_REGEXP, ERROR_MESSAGES} from '../../utils/constants';
 
 
 function InputElement(props) {
@@ -11,7 +11,7 @@ function InputElement(props) {
   const checkValidity = (e) => {
     if(e.target.type === 'email' && !EMAIL_REGEXP.test(e.target.value.toLowerCase())) {
       setHasErrors(true);
-      setErrorMessage(errorMessages.wrongType);
+      setErrorMessage(ERROR_MESSAGES.WRONG_TYPE);
     } else {
       if(!e.target.validity.valid) {
         setHasErrors(true);

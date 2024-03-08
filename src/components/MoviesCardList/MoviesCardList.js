@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import MoreButton from '../MoreButton/MoreButton';
 import MoviesCard from "../MoviesCard/MoviesCard";
-import {windowWidth, numberOfCards, additionalCards} from '../../utils/constants';
+import {WINDOW_WIDTH, NUMBER_OF_CARDS, ADDITIONAL_CARDS} from '../../utils/constants';
 
 function MoviesCardList(props) {
   const [device, setDevice] = useState("");
 
   function identifyDevice() {
-    if(window.innerWidth > windowWidth.laptop) {
+    if(window.innerWidth > WINDOW_WIDTH.LAPTOP) {
       setDevice('laptop');
     } else {
-      if(window.innerWidth > windowWidth.tablet) {
+      if(window.innerWidth > WINDOW_WIDTH.TABLET) {
         setDevice('tablet');
       } else {
         setDevice('mobile');
@@ -19,13 +19,13 @@ function MoviesCardList(props) {
   }
 
   function getInitialCardsAmount() {
-    if(window.innerWidth > windowWidth.laptop) {
-      return numberOfCards.laptop;
+    if(window.innerWidth > WINDOW_WIDTH.LAPTOP) {
+      return NUMBER_OF_CARDS.LAPTOP;
     } else {
-      if(window.innerWidth > windowWidth.tablet) {
-        return numberOfCards.tablet;
+      if(window.innerWidth > WINDOW_WIDTH.TABLET) {
+        return NUMBER_OF_CARDS.TABLET;
       } else {
-        return numberOfCards.mobile;
+        return NUMBER_OF_CARDS.MOBILE;
       }
     }
   }
@@ -40,11 +40,11 @@ function MoviesCardList(props) {
   }
 
   const handleMoreButtonClick = () => {
-    if(window.innerWidth > windowWidth.laptop) {
-      setCardsAmount(cardsAmount+additionalCards.laptop)
+    if(window.innerWidth > WINDOW_WIDTH.LAPTOP) {
+      setCardsAmount(cardsAmount+ADDITIONAL_CARDS.LAPTOP)
       setCards(props.cardsSet.slice(0, cardsAmount))
     } else {
-      setCardsAmount(cardsAmount+additionalCards.tablet)
+      setCardsAmount(cardsAmount+ADDITIONAL_CARDS.TABLET)
       setCards(props.cardsSet.slice(0, cardsAmount))
     }
   }

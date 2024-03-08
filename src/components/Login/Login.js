@@ -2,7 +2,6 @@ import Form from '../Form/Form';
 import InputElement from '../InputElement/InputElement';
 import FormLink from '../FormLink/FormLink';
 import FormButton from '../FormButton/FormButton';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {EMAIL_REGEXP} from '../../utils/constants';

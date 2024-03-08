@@ -11,9 +11,9 @@ function SearchForm(props) {
   const handleChange = (e) => {
     const {value} = e.target;
     if(!props.isOnlySavedMovies) {
-      setSearchRequest(value.toLowerCase());
+      setSearchRequest(value);
     } else {
-      setSearchSavedRequest(value.toLowerCase());   
+      setSearchSavedRequest(value);   
     }
   }
 
@@ -25,8 +25,6 @@ function SearchForm(props) {
       props.onSearchSubmit(request, filterState);
       if(key) {
         localStorage.setItem(`${key}`, request);
-      } else {
-        return;
       }
     }
   }
@@ -34,9 +32,9 @@ function SearchForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(props.isOnlySavedMovies) {
-      handleSearch(searchSavedRequest, isFilterOnSaved);
+      handleSearch(searchSavedRequest.toLowerCase(), isFilterOnSaved);
     } else {
-      handleSearch(searchRequest, isFilterOn, "searchRequest");
+      handleSearch(searchRequest.toLowerCase(), isFilterOn, "searchRequest");
     }
   };
 
