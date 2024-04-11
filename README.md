@@ -28,4 +28,4 @@
 
 
 ## Стек 
-HTML | CSS | React | Express | MongoDB | NodeJS | API | Nginx | JWT | Postman | CORS | БЭМ
+HTML | CSS | JavaScript | React | Express | MongoDB | NodeJS | API | Nginx | JWT | Postman | CORS | БЭМ

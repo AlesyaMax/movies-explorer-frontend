@@ -44,6 +44,7 @@
   border-radius: 10px;
   grid-column: 2/3;
   grid-row: 1/5;
+  object-fit: cover;
 }
 
 .student__github-link {
