@@ -1,0 +1,38 @@
+.more-button-container {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.more-button-container__button {
+  margin: 78px auto 80px auto;
+  padding: 0;
+  width: 320px;
+  height: 36px;
+  background-color: transparent;
+  border: 1px solid #424242;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.more-button-container__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media (max-width: 810px) {
+  .more-button-container__button {
+    margin-top: 60px;
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 370px) {
+  .more-button-container__button {
+    margin-top: 63px;
+    width: 240px;
+  }
+}
